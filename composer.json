@@ -1,0 +1,29 @@
+{
+    "name": "symfony-util/controller-using-templating-http-foundation",
+    "description": "Controller which renders a template and returns a response (HttpFoundation)",
+    "keywords": ["controller", "symfony", "snowyowl"],
+    "homepage": "https://github.com/symfony-util/controller-using-templating-http-foundation",
+    "license": "ISC",
+    "authors": [
+        {"name": "Jean-bernard Addor"},
+        {"name": "Community", "homepage": "https://github.com/symfony-util/controller-using-templating-http-foundation"}
+    ],
+    "require": {
+        "symfony/http-kernel": "^3.3 || ^4.0",
+        "symfony-util/controller-using-templating-http-foundation": "^0.1.0@dev"
+    },
+    "require-dev": {
+        "escapestudios/symfony2-coding-standard": "^2.11"
+    },
+    "suggest": {
+    },
+    "autoload": {
+        "psr-4": { "SymfonyUtil\\Controller\\": "" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    }
+}
+
