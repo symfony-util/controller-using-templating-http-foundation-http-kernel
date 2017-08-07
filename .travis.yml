@@ -14,7 +14,7 @@ services:
 matrix:
   fast_finish: true
   include:
-    - php: 5.4
+    # - php: 5.4 # symfony/http-kernel v3.3.6 requires php >=5.5.9 -> your PHP version (5.4.45) does not satisfy that requirement.
     - php: 5.5
     - php: 5.6
     - php: 7.0
