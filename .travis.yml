@@ -34,11 +34,11 @@ install:
   # - cp config/parameters.yml.travis config/parameters.yml
   # - composer up --no-progress --no-suggest --optimize-autoloader --apcu-autoloader
   - composer install --no-progress --no-suggest --optimize-autoloader --apcu-autoloader
-  - composer show
 
 before_script:
 
 script:
+  - composer show
   # - ./vendor/bin/simple-phpunit
   # this checks that the source code follows the Symfony Code Syntax rules
   # - ./vendor/bin/php-cs-fixer fix --diff --dry-run -v
