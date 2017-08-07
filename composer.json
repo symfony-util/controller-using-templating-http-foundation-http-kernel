@@ -13,12 +13,10 @@
         "symfony-util/controller-using-templating-http-foundation": "^0.1.0@dev"
     },
     "require-dev": {
-        "escapestudios/symfony2-coding-standard": "^2.11"
     },
     "suggest": {
     },
     "autoload": {
-        "psr-4": { "SymfonyUtil\\Controller\\": "" }
     },
     "extra": {
         "branch-alias": {
