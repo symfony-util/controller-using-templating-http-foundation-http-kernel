@@ -38,7 +38,7 @@ install:
 before_script:
 
 script:
-  - composer show
+  - composer show # Moved in script section to avoid default phpunit start and fail.
   # - ./vendor/bin/simple-phpunit
   # this checks that the source code follows the Symfony Code Syntax rules
   # - ./vendor/bin/php-cs-fixer fix --diff --dry-run -v
