@@ -29,10 +29,12 @@ before_install:
   # - psql -c 'create database travis_ci_test;' -U postgres
 
 install:
+  - composer validate
   # - composer install --no-scripts --no-progress --no-suggest
   # - cp config/parameters.yml.travis config/parameters.yml
   # - composer up --no-progress --no-suggest --optimize-autoloader --apcu-autoloader
   - composer install --no-progress --no-suggest --optimize-autoloader --apcu-autoloader
+  - composer show
 
 before_script:
 
