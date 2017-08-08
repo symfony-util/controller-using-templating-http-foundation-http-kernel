@@ -1,5 +1,6 @@
 # controller-using-templating-http-foundation-http-kernel
 Controller which renders a template and returns a response (HttpFoundation): dependency check for use by http-kernel
+
 [![PHPPackages Rank](https://phppackages.org/p/symfony-util/controller-using-templating-http-foundation-http-kernel/badge/rank.svg)](https://phppackages.org/p/symfony-util/controller-using-templating-http-foundation-http-kernel)
 [![Monthly Downloads](https://poser.pugx.org/symfony-util/controller-using-templating-http-foundation-http-kernel/d/monthly)](https://packagist.org/packages/symfony-util/controller-using-templating-http-foundation-http-kernel)
 [![PHPPackages Referenced By](https://phppackages.org/p/symfony-util/controller-using-templating-http-foundation-http-kernel/badge/referenced-by.svg)](https://phppackages.org/p/symfony-util/controller-using-templating-http-foundation-http-kernel)
