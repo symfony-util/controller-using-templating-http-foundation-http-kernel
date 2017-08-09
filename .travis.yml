@@ -24,6 +24,7 @@ matrix:
 
 before_install:
   - if [ -f /home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini ]; then phpenv config-rm xdebug.ini; fi
+  - for f in $(find . -path './vendor' -prune -o -name \*.php -print) ; do php -l $f ; done # Do this first! (Useless if no code)
   - composer self-update # May help using cache for php packages.
   # - ls /home/travis/.phpenv/versions/5.6/etc/conf.d
   # - phpenv config-add ~travis.php.ini # name choosen for it to be executed after travis.ini
@@ -54,5 +55,6 @@ script:
   # - ./bin/console lint:xliff templates
   # this checks that the application doesn't use dependencies with known security vulnerabilities
   # - ./bin/console security:check --end-point=http://security.sensiolabs.org/check_lock
+  - for f in $(find ./vendor -name \*.php) ; do php -l $f > /dev/null ; done # Should be the last line of install but sometimes long to execute and little can be done for errors found.
 
 # inspirated from symfony/symfony-demo
