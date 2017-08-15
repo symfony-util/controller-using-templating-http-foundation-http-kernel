@@ -8,3 +8,5 @@ Controller which renders a template and returns a response (HttpFoundation): dep
 [![Dependency Status](https://www.versioneye.com/php/symfony-util:controller-using-templating-http-foundation-http-kernel/badge)](https://www.versioneye.com/php/symfony-util:controller-using-templating-http-foundation-http-kernel)
 [![Build Status](https://travis-ci.org/symfony-util/controller-using-templating-http-foundation-http-kernel.svg?branch=master)](https://travis-ci.org/symfony-util/controller-using-templating-http-foundation-http-kernel)
 [![Code Coverage](https://scrutinizer-ci.com/g/symfony-util/controller-using-templating-http-foundation-http-kernel/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/symfony-util/controller-using-templating-http-foundation-http-kernel/?branch=master)
+
+Icon: https://material.io/icons/#ic_wallpaper
