@@ -10,6 +10,7 @@
  */
 
 use Symfony\Bridge\Twig\TwigEngine;
+use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 // use Symfony\Bundle\TwigBundle\TwigBundle;
@@ -20,6 +21,7 @@ use Symfony\Component\Routing\RouteCollectionBuilder;
 use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\Templating\TemplateNameParser;
 use Symfony\Component\Templating\TemplateNameParserInterface;
+use SymfonyUtil\Controller\EngineAsArgumentController;
 
 // use Twig_Environment;
 // use Twig_Loader_Array;
@@ -38,7 +40,7 @@ class ComponentKernel extends Kernel
 
     protected function configureRoutes(RouteCollectionBuilder $routes)
     {
-        $routes->add('/', SymfonyUtil\Controller\EngineAsArgumentController::class, 'index');
+        $routes->add('/', EngineAsArgumentController::class, 'index');
     }
 
     protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader)
@@ -66,8 +68,15 @@ class ComponentKernel extends Kernel
             ->setPublic(false);
         $c->setAlias(EngineInterface::class, TwigEngine::class);
 
+        if (in_array($this->getEnvironment(), ['test'], true)) {
+            $c->autowire('test.client', Client::class)
+                ->setAutoconfigured(false)
+                ->setShared(false)
+                ->setPublic(true); //
+        }
+
         //Controllers
-        $c->autowire(SymfonyUtil\Controller\EngineAsArgumentController::class)
+        $c->autowire(EngineAsArgumentController::class)
             ->setAutoconfigured(true)
             ->addTag('controller.service_arguments')
             ->setPublic(false);
@@ -84,3 +93,21 @@ class ComponentKernel extends Kernel
         // ]);
     }
 }
+
+// Information for Service "test.client"
+// =====================================
+
+//  ---------------- --------------------------------------- 
+//   Option           Value                                  
+//  ---------------- --------------------------------------- 
+//   Service ID       test.client                            
+//   Class            Symfony\Bundle\FrameworkBundle\Client  
+//   Tags             -                                      
+//   Public           yes                                    
+//   Synthetic        no                                     
+//   Lazy             no                                     
+//   Shared           no                                     
+//   Abstract         no                                     
+//   Autowired        no                                     
+//   Autoconfigured   no                                     
+//  ---------------- --------------------------------------- 
