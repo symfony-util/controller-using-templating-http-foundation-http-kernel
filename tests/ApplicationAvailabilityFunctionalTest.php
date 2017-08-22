@@ -11,9 +11,7 @@
 
 namespace Tests;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-
-class ApplicationAvailabilityFunctionalTest extends WebTestCase
+class ApplicationAvailabilityFunctionalTest extends \FrameworkWebTestCase
 {
     /**
      * @dataProvider urlProvider
@@ -35,10 +33,5 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
             // ['/login'],
             // ...
         ];
-    }
-
-    protected static function getKernelClass()
-    {
-        return \FrameworkKernel::class;
     }
 }
