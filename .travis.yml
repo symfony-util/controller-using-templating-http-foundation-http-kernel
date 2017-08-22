@@ -87,7 +87,7 @@ script:
     #^ Should be the last line of install but sometimes long to execute and little can be done for errors found.
 
 after_success:
-    - bash <(curl -s https://codecov.io/bash) -s /tmp
+    - true || bash <(curl -s https://codecov.io/bash) -s /tmp
 
 # inspirated from:
   # symfony/symfony-demo
