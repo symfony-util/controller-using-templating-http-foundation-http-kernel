@@ -13,4 +13,8 @@ Controller which renders a template and returns a response (HttpFoundation): dep
 <!---
 [![SensioLabsInsight](https://img.shields.io/sensiolabs/i/20fdf909-deda-46fa-9fb5-dc2cdf778c05.svg)](https://insight.sensiolabs.com/projects/20fdf909-deda-46fa-9fb5-dc2cdf778c05)
 -->
+
+## Possible improvements
+* Use (yaml) configuraton for test Kernel(s), instead of in php code configuration
+
 Icon: https://material.io/icons/#ic_wallpaper
