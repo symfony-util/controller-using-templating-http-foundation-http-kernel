@@ -46,7 +46,7 @@ class ComponentKernel extends Kernel
         $c->loadFromExtension('framework', [
             'secret' => 'NotSecret', // What about use $ uuid -v4  or $ uuidgen
             'test' => in_array($this->getEnvironment(), ['test'], true), // test.client service for eg. PHPUnit
-            'templating' => ['engines' => 'twig'],
+            // 'templating' => ['engines' => 'twig'],
         ]);
         // $c->loadFromExtension('twig', [
         //     'debug' => true,
