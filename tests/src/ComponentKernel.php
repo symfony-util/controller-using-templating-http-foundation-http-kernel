@@ -36,6 +36,10 @@ class ComponentKernel extends Kernel
 
     protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader)
     {
+        $c->autowire(Symfony\Component\Templating\TemplateNameParser::class)
+            ->setAutoconfigured(true)
+            ->setPublic(false);
+
         //Controllers
         $c->autowire(SymfonyUtil\Controller\EngineAsArgumentController::class)
             ->setAutoconfigured(true)
