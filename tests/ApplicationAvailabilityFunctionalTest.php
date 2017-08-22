@@ -28,10 +28,6 @@ class ApplicationAvailabilityFunctionalTest extends \FrameworkWebTestCase
     {
         return [
             ['/'],
-            // ['url'],
-            // ['/taxonomy'],
-            // ['/login'],
-            // ...
         ];
     }
 }
