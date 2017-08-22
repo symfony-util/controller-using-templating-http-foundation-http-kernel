@@ -1,0 +1,8 @@
+build:
+    tests:
+        override:
+            -
+                command: 'wget https://phar.phpunit.de/phpunit.phar --output-document=./phpunit; php phpunit tests'
+                coverage:
+                    file: '/tmp/coverage.xml'
+                    format: 'clover'
