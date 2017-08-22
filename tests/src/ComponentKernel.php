@@ -46,7 +46,7 @@ class ComponentKernel extends Kernel
             ->setAutoconfigured(true)
             ->setPublic(false);
 
-        $c->autowire(Twig_Environment::class)
+        $c->autowire(Twig_Environment::class, Twig_Environment::class)
             ->setAutoconfigured(true)
             ->setPublic(false);
 
