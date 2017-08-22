@@ -50,7 +50,7 @@ class ComponentKernel extends Kernel
             ->setAutoconfigured(true)
             ->setPublic(false);
 
-        $c->autowire(TwigEngine::class)
+        $c->autowire(TwigEngine::class, TwigEngine::class)
             ->setAutoconfigured(true)
             ->setPublic(false);
 
