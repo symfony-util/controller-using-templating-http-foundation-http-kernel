@@ -21,7 +21,7 @@ class DefaultControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/');
 
-        $this->assertEquals(
+        $this->assertSame(
             200, // or Symfony\Component\HttpFoundation\Response::HTTP_OK,
             $client->getResponse()->getStatusCode()
         );
