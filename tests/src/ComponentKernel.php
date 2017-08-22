@@ -72,7 +72,7 @@ class ComponentKernel extends Kernel
             $c->autowire('test.client', Client::class)
                 ->setAutoconfigured(false)
                 ->setShared(false)
-                ->setPublic(true); //
+                ->setPublic(true); // sure?
         }
 
         //Controllers
@@ -84,7 +84,7 @@ class ComponentKernel extends Kernel
         // Extensions
         $c->loadFromExtension('framework', [
             'secret' => 'NotSecret', // What about use $ uuid -v4  or $ uuidgen
-            'test' => in_array($this->getEnvironment(), ['test'], true), // test.client service for eg. PHPUnit
+            // 'test' => in_array($this->getEnvironment(), ['test'], true), // test.client service for eg. PHPUnit
             // 'templating' => ['engines' => 'twig'],
         ]);
         // $c->loadFromExtension('twig', [
@@ -97,17 +97,17 @@ class ComponentKernel extends Kernel
 // Information for Service "test.client"
 // =====================================
 
-//  ---------------- --------------------------------------- 
-//   Option           Value                                  
-//  ---------------- --------------------------------------- 
-//   Service ID       test.client                            
-//   Class            Symfony\Bundle\FrameworkBundle\Client  
-//   Tags             -                                      
-//   Public           yes                                    
-//   Synthetic        no                                     
-//   Lazy             no                                     
-//   Shared           no                                     
-//   Abstract         no                                     
-//   Autowired        no                                     
-//   Autoconfigured   no                                     
-//  ---------------- --------------------------------------- 
+//  ---------------- ---------------------------------------
+//   Option           Value
+//  ---------------- ---------------------------------------
+//   Service ID       test.client
+//   Class            Symfony\Bundle\FrameworkBundle\Client
+//   Tags             -
+//   Public           yes
+//   Synthetic        no
+//   Lazy             no
+//   Shared           no
+//   Abstract         no
+//   Autowired        no
+//   Autoconfigured   no
+//  ---------------- ---------------------------------------
