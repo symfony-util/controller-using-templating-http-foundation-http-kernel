@@ -16,5 +16,6 @@ Controller which renders a template and returns a response (HttpFoundation): dep
 
 ## Possible improvements
 * Use (yaml) configuraton for test Kernel(s), instead of in php code configuration
+* Tests do not use 2 Kernels as intended, the first one configured is the only one!
 
 Icon: https://material.io/icons/#ic_wallpaper
