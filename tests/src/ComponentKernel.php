@@ -52,6 +52,7 @@ class ComponentKernel extends Kernel
         $c->autowire(Twig_Environment::class, Twig_Environment::class)
             ->setAutoconfigured(true)
             ->setPublic(false);
+        $c->setAlias(Twig\Environment::class, Twig_Environment::class);
 
         // $c->autowire(TwigEngine::class, TwigEngine::class)
         $c->autowire(TwigEngine::class)
