@@ -41,7 +41,7 @@ class ComponentKernel extends Kernel
             ->setAutoconfigured(true)
             ->setPublic(false);
 
-        $c->autowire(Twig_Loader_Array::class)
+        $c->autowire(\Twig_Loader_Array::class)
             ->setArgument('$templates', ['index.html.twig' => 'Hello World!'])
             ->setAutoconfigured(true)
             ->setPublic(false);
