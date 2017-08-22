@@ -9,7 +9,10 @@
  * file that was distributed with this source code.
  */
 
+use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
+use Symfony\Bundle\TwigBundle\TwigBundle;
+use Symfony\Bundle\WebServerBundle\WebServerBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
@@ -19,9 +22,6 @@ use Symfony\Component\Routing\RouteCollectionBuilder;
 // Bundles
 // use Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle;
 // use Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle;
-use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
-use Symfony\Bundle\TwigBundle\TwigBundle;
-use Symfony\Bundle\WebServerBundle\WebServerBundle;
 
 // use Symfony\Bundle\WebProfilerBundle\WebProfilerBundle;
 
