@@ -16,6 +16,7 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
+use Symfony\Component\Templating\EngineInterface;
 
 class ComponentKernel extends Kernel
 {
@@ -54,6 +55,7 @@ class ComponentKernel extends Kernel
             ->setAutoconfigured(true)
             ->setShared(true) // not needed: default
             ->setPublic(false);
+        $c->setAlias(EngineInterface::class, TwigEngine::class)
 
         //Controllers
         $c->autowire(SymfonyUtil\Controller\EngineAsArgumentController::class)
