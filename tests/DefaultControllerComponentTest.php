@@ -24,6 +24,6 @@ class DefaultControllerComponentTest extends \ComponentWebTestCase
             $client->getResponse()->getStatusCode()
         );
 
-        $this->assertContains('Hello World!', $client->getResponse()->getContent());
+        $this->assertContains('Hello Component!', $client->getResponse()->getContent());
     }
 }
