@@ -50,6 +50,10 @@ class ComponentKernel extends Kernel
             ->setAutoconfigured(true)
             ->setPublic(false);
 
+        $c->autowire(TwigEngine::class)
+            ->setAutoconfigured(true)
+            ->setPublic(false);
+
         //Controllers
         $c->autowire(SymfonyUtil\Controller\EngineAsArgumentController::class)
             ->setAutoconfigured(true)
