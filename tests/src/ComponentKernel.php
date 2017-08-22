@@ -36,7 +36,13 @@ class ComponentKernel extends Kernel
 
     protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader)
     {
+        // https://symfony.com/doc/current/service_container.html
         $c->autowire(Symfony\Component\Templating\TemplateNameParser::class)
+            ->setAutoconfigured(true)
+            ->setPublic(false);
+
+        $c->autowire(Twig_Loader_Array::class)
+            ->setArgument('$templates', ['index.html.twig' => 'Hello World!'])
             ->setAutoconfigured(true)
             ->setPublic(false);
 
