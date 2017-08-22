@@ -50,7 +50,7 @@ class ComponentKernel extends Kernel
         $c->setAlias(TemplateNameParserInterface::class, TemplateNameParser::class);
 
         $c->autowire(Twig_Loader_Array::class, Twig_Loader_Array::class)
-            ->setArgument('$templates', ['index.html.twig' => 'Hello World!'])
+            ->setArgument('$templates', ['index.html.twig' => 'Hello Component!'])
             ->setAutoconfigured(true)
             ->setPublic(false);
         $c->setAlias(Twig_LoaderInterface::class, Twig_Loader_Array::class);
@@ -60,7 +60,6 @@ class ComponentKernel extends Kernel
             ->setPublic(false);
         $c->setAlias(Twig\Environment::class, Twig_Environment::class);
 
-        // $c->autowire(TwigEngine::class, TwigEngine::class)
         $c->autowire(TwigEngine::class)
             ->setAutoconfigured(true)
             ->setShared(true) // not needed: default
