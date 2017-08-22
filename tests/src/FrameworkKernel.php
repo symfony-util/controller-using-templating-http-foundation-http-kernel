@@ -22,7 +22,7 @@ class FrameworkKernel extends Kernel
 
     public function registerBundles()
     {
-        return = [
+        return [
             new FrameworkBundle(),
             new TwigBundle(),
             new WebServerBundle()
