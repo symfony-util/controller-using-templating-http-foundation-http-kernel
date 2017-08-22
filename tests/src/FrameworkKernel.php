@@ -34,7 +34,7 @@ class FrameworkKernel extends Kernel
         return [
             new FrameworkBundle(),
             new TwigBundle(),
-            new WebServerBundle(),
+            // new WebServerBundle(),
         ];
     }
 
@@ -59,15 +59,11 @@ class FrameworkKernel extends Kernel
             'secret' => 'NotSecret', // What about use $ uuid -v4  or $ uuidgen
             'test' => in_array($this->getEnvironment(), ['test'], true), // test.client service for eg. PHPUnit
             'profiler' => ['enabled' => in_array($this->getEnvironment(), ['dev', 'test'], true)],
-            'templating' => [
-                'engines' => 'twig',
-            ],
+            'templating' => ['engines' => 'twig'],
         ]);
         $c->loadFromExtension('twig', [
             'debug' => true,
-            'paths' => [
-                '%kernel.project_dir%/tests/templates',
-            ],
+            'paths' => ['%kernel.project_dir%/tests/templates'],
         ]); // Sets the template directories...
     }
 }
