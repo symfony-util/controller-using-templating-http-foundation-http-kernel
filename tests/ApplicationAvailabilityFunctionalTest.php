@@ -39,6 +39,6 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
 
     protected static function getKernelClass()
     {
-        return FrameworkKernel::class;
+        return \FrameworkKernel::class;
     }
 }
