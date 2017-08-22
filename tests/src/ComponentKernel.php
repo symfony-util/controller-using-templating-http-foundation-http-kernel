@@ -33,7 +33,7 @@ class ComponentKernel extends Kernel
     public function registerBundles()
     {
         return [
-            new FrameworkBundle(),
+            // new FrameworkBundle(),
             // new TwigBundle(),
         ];
     }
@@ -82,11 +82,11 @@ class ComponentKernel extends Kernel
             ->setPublic(false);
 
         // Extensions
-        $c->loadFromExtension('framework', [
-            'secret' => 'NotSecret', // What about use $ uuid -v4  or $ uuidgen
+        // $c->loadFromExtension('framework', [
+            // 'secret' => 'NotSecret', // What about use $ uuid -v4  or $ uuidgen
             // 'test' => in_array($this->getEnvironment(), ['test'], true), // test.client service for eg. PHPUnit
             // 'templating' => ['engines' => 'twig'],
-        ]);
+        // ]);
         // $c->loadFromExtension('twig', [
         //     'debug' => true,
         //     'paths' => ['%kernel.project_dir%/tests/templates'],
