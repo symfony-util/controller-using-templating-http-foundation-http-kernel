@@ -12,18 +12,10 @@
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Bundle\TwigBundle\TwigBundle;
-use Symfony\Bundle\WebServerBundle\WebServerBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
-
-// use Symfony\Component\DependencyInjection\Reference;
-// Bundles
-// use Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle;
-// use Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle;
-
-// use Symfony\Bundle\WebProfilerBundle\WebProfilerBundle;
 
 class FrameworkKernel extends Kernel
 {
@@ -34,7 +26,6 @@ class FrameworkKernel extends Kernel
         return [
             new FrameworkBundle(),
             new TwigBundle(),
-            // new WebServerBundle(),
         ];
     }
 
@@ -45,9 +36,6 @@ class FrameworkKernel extends Kernel
 
     protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader)
     {
-        // $loader->import($this->getProjectDir() . '/config/parameters.yml'); // PHPUnit
-        // $loader->load($this->getProjectDir().'/config/config_'.$this->getEnvironment().'.yml');
-
         //Controllers
         $c->autowire(SymfonyUtil\Controller\EngineAsArgumentController::class)
             ->setAutoconfigured(true)
@@ -58,12 +46,13 @@ class FrameworkKernel extends Kernel
         $c->loadFromExtension('framework', [
             'secret' => 'NotSecret', // What about use $ uuid -v4  or $ uuidgen
             'test' => in_array($this->getEnvironment(), ['test'], true), // test.client service for eg. PHPUnit
-            'profiler' => ['enabled' => in_array($this->getEnvironment(), ['dev', 'test'], true)],
+            // 'profiler' => ['enabled' => in_array($this->getEnvironment(), ['dev', 'test'], true)],
             'templating' => ['engines' => 'twig'],
         ]);
         $c->loadFromExtension('twig', [
             'debug' => true,
             'paths' => ['%kernel.project_dir%/tests/templates'],
-        ]); // Sets the template directories...
+             // Sets the template directories...
+        ]);
     }
 }
