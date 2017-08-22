@@ -52,6 +52,7 @@ class ComponentKernel extends Kernel
 
         $c->autowire(TwigEngine::class, TwigEngine::class)
             ->setAutoconfigured(true)
+            ->setShared(true) // not needed: default
             ->setPublic(false);
 
         //Controllers
