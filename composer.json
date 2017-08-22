@@ -13,11 +13,20 @@
         "symfony-util/controller-using-templating-http-foundation": "^0.1.0@dev"
     },
     "require-dev": {
-        "symfony/framework-bundle": "^3.3 || ^4.0"
+        "symfony/framework-bundle": "^3.3 || ^4.0",
+        "symfony/var-dumper": "^3.3 || ^4.0"
     },
     "suggest": {
     },
     "autoload": {
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        },
+        "files": [
+            "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php"
+        ]
     },
     "extra": {
         "branch-alias": {
