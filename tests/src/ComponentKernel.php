@@ -9,6 +9,7 @@
  * file that was distributed with this source code.
  */
 
+use Symfony\Bridge\Twig\TwigEngine;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Bundle\TwigBundle\TwigBundle;
@@ -17,6 +18,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 use Symfony\Component\Templating\EngineInterface;
+use Symfony\Component\Templating\TemplateNameParser;
 
 class ComponentKernel extends Kernel
 {
@@ -38,7 +40,7 @@ class ComponentKernel extends Kernel
     protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader)
     {
         // https://symfony.com/doc/current/service_container.html
-        $c->autowire(Symfony\Component\Templating\TemplateNameParser::class)
+        $c->autowire(TemplateNameParser::class)
             ->setAutoconfigured(true)
             ->setPublic(false);
 
@@ -51,7 +53,8 @@ class ComponentKernel extends Kernel
             ->setAutoconfigured(true)
             ->setPublic(false);
 
-        $c->autowire(TwigEngine::class, TwigEngine::class)
+        // $c->autowire(TwigEngine::class, TwigEngine::class)
+        $c->autowire(TwigEngine::class)
             ->setAutoconfigured(true)
             ->setShared(true) // not needed: default
             ->setPublic(false);
