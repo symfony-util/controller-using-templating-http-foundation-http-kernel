@@ -55,7 +55,7 @@ class ComponentKernel extends Kernel
             ->setAutoconfigured(true)
             ->setShared(true) // not needed: default
             ->setPublic(false);
-        $c->setAlias(EngineInterface::class, TwigEngine::class)
+        $c->setAlias(EngineInterface::class, TwigEngine::class);
 
         //Controllers
         $c->autowire(SymfonyUtil\Controller\EngineAsArgumentController::class)
