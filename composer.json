@@ -16,8 +16,7 @@
         "symfony/asset": "^3.3 || ^4.0",
         "symfony/browser-kit": "^3.3 || ^4.0",
         "symfony/framework-bundle": "^3.3 || ^4.0",
-        "symfony/twig-bundle": "^3.3 || ^4.0",
-        "symfony/web-server-bundle": "^3.3 || ^4.0"
+        "symfony/twig-bundle": "^3.3 || ^4.0"
     },
     "suggest": {
     },
