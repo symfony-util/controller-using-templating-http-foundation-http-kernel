@@ -15,10 +15,10 @@ use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Bundle\WebServerBundle\WebServerBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 
+// use Symfony\Component\DependencyInjection\Reference;
 // Bundles
 // use Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle;
 // use Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle;
@@ -34,7 +34,7 @@ class FrameworkKernel extends Kernel
         return [
             new FrameworkBundle(),
             new TwigBundle(),
-            new WebServerBundle()
+            new WebServerBundle(),
         ];
     }
 
