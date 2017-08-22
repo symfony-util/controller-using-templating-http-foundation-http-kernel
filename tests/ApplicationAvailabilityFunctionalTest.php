@@ -36,4 +36,9 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
             // ...
         ];
     }
+
+    protected static function getKernelClass()
+    {
+        return FrameworkKernel;
+    }
 }
