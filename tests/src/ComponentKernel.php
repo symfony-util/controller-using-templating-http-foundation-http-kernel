@@ -12,13 +12,16 @@
 use Symfony\Bridge\Twig\TwigEngine;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
-use Symfony\Bundle\TwigBundle\TwigBundle;
+// use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\Templating\TemplateNameParser;
+use Symfony\Component\Templating\TemplateNameParserInterface;
+use Twig_Loader_Array;
+use Twig_Environment;
 
 class ComponentKernel extends Kernel
 {
@@ -43,11 +46,13 @@ class ComponentKernel extends Kernel
         $c->autowire(TemplateNameParser::class)
             ->setAutoconfigured(true)
             ->setPublic(false);
+        $c->setAlias(TemplateNameParserInterface::class, TemplateNameParser::class);
 
         $c->autowire(Twig_Loader_Array::class, Twig_Loader_Array::class)
             ->setArgument('$templates', ['index.html.twig' => 'Hello World!'])
             ->setAutoconfigured(true)
             ->setPublic(false);
+        $c->setAlias(Twig_LoaderInterface::class, Twig_Loader_Array::class);
 
         $c->autowire(Twig_Environment::class, Twig_Environment::class)
             ->setAutoconfigured(true)
