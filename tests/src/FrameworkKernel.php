@@ -56,7 +56,7 @@ class FrameworkKernel extends Kernel
 
         // Extensions
         $c->loadFromExtension('framework', [
-            // 'secret' => 'NotSecret', // What about use $ uuid -v4  or $ uuidgen
+            'secret' => 'NotSecret', // What about use $ uuid -v4  or $ uuidgen
             'test' => in_array($this->getEnvironment(), ['test'], true), // test.client service for eg. PHPUnit
             'profiler' => ['enabled' => in_array($this->getEnvironment(), ['dev', 'test'], true)],
             'templating' => [
