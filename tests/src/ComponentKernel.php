@@ -25,7 +25,7 @@ class ComponentKernel extends Kernel
     {
         return [
             new FrameworkBundle(),
-            new TwigBundle(),
+            // new TwigBundle(),
         ];
     }
 
@@ -48,9 +48,9 @@ class ComponentKernel extends Kernel
             'test' => in_array($this->getEnvironment(), ['test'], true), // test.client service for eg. PHPUnit
             'templating' => ['engines' => 'twig'],
         ]);
-        $c->loadFromExtension('twig', [
-            'debug' => true,
-            'paths' => ['%kernel.project_dir%/tests/templates'],
-        ]);
+        // $c->loadFromExtension('twig', [
+        //     'debug' => true,
+        //     'paths' => ['%kernel.project_dir%/tests/templates'],
+        // ]);
     }
 }
