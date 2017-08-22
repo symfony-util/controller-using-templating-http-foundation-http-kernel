@@ -12,7 +12,7 @@ use Symfony\Component\Routing\RouteCollectionBuilder;
 // use Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\TwigBundle\TwigBundle;
-use Symfony\Bundle\WebServerBundle\WebServerBundle
+use Symfony\Bundle\WebServerBundle\WebServerBundle;
 
 // use Symfony\Bundle\WebProfilerBundle\WebProfilerBundle;
 
