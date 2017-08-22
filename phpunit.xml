@@ -7,6 +7,14 @@
         <directory suffix="Test.php">tests</directory>
     </testsuite>
 
+</phpunit>
+<!--
+         backupGlobals="false"
+beStrictAboutCoversAnnotation="true"
+         beStrictAboutOutputDuringTests="true"
+         beStrictAboutTestsThatDoNotTestAnything="true"
+         beStrictAboutTodoAnnotatedTests="true"
+
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">.</directory>
@@ -23,12 +31,4 @@
         <log type="coverage-clover" target="/tmp/coverage.xml"/>
         <log type="coverage-text" target="php://stdout"/>
     </logging>
-
-</phpunit>
-<!--
-         backupGlobals="false"
-beStrictAboutCoversAnnotation="true"
-         beStrictAboutOutputDuringTests="true"
-         beStrictAboutTestsThatDoNotTestAnything="true"
-         beStrictAboutTodoAnnotatedTests="true"
 -->
