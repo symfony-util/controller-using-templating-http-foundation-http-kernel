@@ -81,6 +81,7 @@ script:
   - if [[ -v PHP_CS_FIXER ]]; then php .travis/bin/php-cs-fixer --version; fi
   - if [[ -v PHP_CS_FIXER ]]; then php .travis/bin/php-cs-fixer fix --stop-on-violation --diff --dry-run -vvv --using-cache=no; fi
   - if [[ -v PHPUNIT ]]; then php --ini $xdebug_php; fi
+  - if [[ -v PHPUNIT ]]; then php $xdebug_php .travis/bin/$PHPUNIT --configuration tests/FrameworkTwig/phpunit.xml --repeat 10 --debug; fi
   - if [[ -v PHPUNIT ]]; then php $xdebug_php .travis/bin/$PHPUNIT --configuration tests/Framework/phpunit.xml --repeat 10 --debug; fi
   - if [[ -v PHPUNIT ]]; then php $xdebug_php .travis/bin/$PHPUNIT --configuration tests/Component/phpunit.xml --repeat 10 --debug; fi
 
