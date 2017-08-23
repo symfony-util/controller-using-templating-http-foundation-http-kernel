@@ -11,7 +11,9 @@
 
 namespace Tests;
 
-class ApplicationAvailabilityComponentFunctionalTest extends \Component\WebTestCase
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+
+class ApplicationAvailabilityComponentFunctionalTest extends WebTestCase
 {
     /**
      * @dataProvider urlProvider
