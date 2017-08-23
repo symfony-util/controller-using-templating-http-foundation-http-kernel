@@ -25,7 +25,7 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\Component\\": "tests/Component"
-        },
+        }
     },
     "extra": {
         "branch-alias": {
