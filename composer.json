@@ -23,9 +23,6 @@
     "autoload": {
     },
     "autoload-dev": {
-        "classmap": [
-            "tests/src/"
-        ]
     },
     "extra": {
         "branch-alias": {
