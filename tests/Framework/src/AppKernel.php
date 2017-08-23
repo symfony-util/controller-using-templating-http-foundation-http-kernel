@@ -70,7 +70,7 @@ class AppKernel extends Kernel
             $c->autowire('test.client', Client::class)
                 // ->setAutoconfigured(false)
                 // ->setShared(false)
-                ->setPublic(false); // sure? -> better
+                ->setPublic(true); // sure? -> better
         }
 
         //Controllers
