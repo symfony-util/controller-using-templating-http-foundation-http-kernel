@@ -11,7 +11,7 @@
 
 namespace Tests\Controller;
 
-class DefaultControllerComponentTest extends \ComponentWebTestCase
+class DefaultControllerComponentTest extends \Component\WebTestCase
 {
     public function testIndex()
     {
