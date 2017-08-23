@@ -11,8 +11,8 @@
 
     <testsuites>
         <testsuite name="Framework">
-            <file>../ApplicationAvailabilityFunctionalTest.php</file>
-            <file>../DefaultControllerTest.php</file>
+            <directory suffix="Test.php">.</directory>
+            <directory suffix="Test.php">../WebTestCase</directory>
         </testsuite>
     </testsuites>
 
@@ -24,8 +24,8 @@ beStrictAboutCoversAnnotation="true"
          beStrictAboutOutputDuringTests="true"
          beStrictAboutTestsThatDoNotTestAnything="true"
          beStrictAboutTodoAnnotatedTests="true"
-
-        <directory suffix="Test.php">tests</directory>
+            
+<file>../DefaultControllerTest.php</file>
 
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
