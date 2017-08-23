@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Templating\TemplateNameParser;
 use SymfonyUtil\Controller\EngineAsArgumentController;
+use Tests\Component\AppKernel;
 
 /**
  * @covers \SymfonyUtil\Controller\EngineAsArgumentController
