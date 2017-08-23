@@ -66,7 +66,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
         $dispatcher = new EventDispatcher();
         $dispatcher->addSubscriber(new RouterListener(
             new UrlMatcher(
-                $routes-> build(), 
+                $routes->build(), 
                 new RequestContext()
             ),
             $requestStack
