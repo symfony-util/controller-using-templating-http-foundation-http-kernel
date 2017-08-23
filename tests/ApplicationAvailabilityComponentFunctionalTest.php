@@ -11,7 +11,7 @@
 
 namespace Tests;
 
-class ApplicationAvailabilityComponentFunctionalTest extends \ComponentWebTestCase
+class ApplicationAvailabilityComponentFunctionalTest extends \Component\WebTestCase
 {
     /**
      * @dataProvider urlProvider
