@@ -3,9 +3,16 @@
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/5.7/phpunit.xsd"
          bootstrap="vendor/autoload.php"
          verbose="true">
-    <testsuite>
-        <directory suffix="Test.php">tests</directory>
+  <testsuites>
+    <testsuite name="Framework">
+        <file>tests/ApplicationAvailabilityFunctionalTest.php</file>
+        <file>tests/DefaultControllerTest.php</file>
     </testsuite>
+    <testsuite name="Component">
+        <file>tests/ApplicationAvailabilityComponentFunctionalTest.php</file>
+        <file>tests/DefaultControllerComponentTest.php</file>
+    </testsuite>
+  </testsuites>
 
 </phpunit>
 <!--
@@ -15,6 +22,7 @@ beStrictAboutCoversAnnotation="true"
          beStrictAboutTestsThatDoNotTestAnything="true"
          beStrictAboutTodoAnnotatedTests="true"
 
+        <directory suffix="Test.php">tests</directory>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">.</directory>
