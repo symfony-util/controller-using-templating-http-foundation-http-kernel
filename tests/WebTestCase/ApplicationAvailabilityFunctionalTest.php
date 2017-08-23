@@ -9,8 +9,6 @@
  * file that was distributed with this source code.
  */
 
-namespace Tests;
-
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ApplicationAvailabilityFunctionalTest extends WebTestCase
