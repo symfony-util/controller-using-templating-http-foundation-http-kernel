@@ -79,6 +79,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
 
         $c = new ContainerBuilder();
         // https://symfony.com/doc/current/service_container.html
+/*
 
         $c->autowire(TemplateNameParser::class)
             ->setAutoconfigured(true)
@@ -100,18 +101,18 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
             ->setAutoconfigured(true)
             ->setPublic(false);
         $c->setAlias(EngineInterface::class, TwigEngine::class);
+*/
 
         // Unit Testing
         // $c->autowire('test.client', Client::class)
         //     ->setPublic(true); // Public needed!
-/*
 
         //Controllers
         $c->autowire(EngineAsArgumentController::class)
             ->setAutoconfigured(true)
             ->addTag('controller.service_arguments')
             ->setPublic(false);
-*/
+
         $this->assertInstanceOf(
             // Response::class, // 5.4 < php
             'Symfony\Component\HttpFoundation\Response',
