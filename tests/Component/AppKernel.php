@@ -51,21 +51,21 @@ class AppKernel extends Kernel
             ->setPublic(false);
         $c->setAlias(TemplateNameParserInterface::class, TemplateNameParser::class);
 
-        $c->autowire(Twig_Loader_Array::class, Twig_Loader_Array::class)
+        $c->autowire(\Twig_Loader_Array::class, \Twig_Loader_Array::class)
             ->setArgument('$templates', ['index.html.twig' => 'Hello Component!'])
             ->setAutoconfigured(true)
             ->setPublic(false);
-        $c->setAlias(Twig_LoaderInterface::class, Twig_Loader_Array::class);
+        $c->setAlias(\Twig_LoaderInterface::class, \Twig_Loader_Array::class);
 
-        $c->autowire(Twig_Environment::class, Twig_Environment::class)
+        $c->autowire(\Twig_Environment::class, \Twig_Environment::class)
             ->setAutoconfigured(true)
             ->setPublic(false);
-        $c->setAlias(Twig\Environment::class, Twig_Environment::class);
+        $c->setAlias(\Twig\Environment::class, \Twig_Environment::class);
 
-        $c->autowire(TwigEngine::class)
+        $c->autowire(\TwigEngine::class)
             ->setAutoconfigured(true)
             ->setPublic(false);
-        $c->setAlias(EngineInterface::class, TwigEngine::class);
+        $c->setAlias(EngineInterface::class, \TwigEngine::class);
 
         if (in_array($this->getEnvironment(), ['test'], true)) {
             $c->autowire('test.client', Client::class)
