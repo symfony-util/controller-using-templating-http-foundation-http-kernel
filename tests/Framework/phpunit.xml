@@ -11,8 +11,8 @@
 
     <testsuites>
         <testsuite name="Framework">
-            <file>tests/ApplicationAvailabilityFunctionalTest.php</file>
-            <file>tests/DefaultControllerTest.php</file>
+            <file>../ApplicationAvailabilityFunctionalTest.php</file>
+            <file>../DefaultControllerTest.php</file>
         </testsuite>
     </testsuites>
 
