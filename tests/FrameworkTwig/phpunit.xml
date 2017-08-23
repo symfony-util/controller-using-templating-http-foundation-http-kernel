@@ -6,7 +6,7 @@
     verbose="true">
 
     <php>
-        <server name="KERNEL_DIR" value="tests/Framework/src" />
+        <server name="KERNEL_DIR" value="tests/FrameworkTwig/src" />
     </php>
 
     <testsuites>
