@@ -11,12 +11,13 @@
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Twig\TwigEngine;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Controller\ArgumentResolver;
-use Symfony\Component\HttpKernel\Controller\ControllerResolver;
+use Symfony\Component\HttpKernel\Controller\ContainerControllerResolver;
 use Symfony\Component\HttpKernel\EventListener\ResponseListener;
 use Symfony\Component\HttpKernel\EventListener\RouterListener;
 use Symfony\Component\HttpKernel\HttpKernel;
@@ -72,12 +73,48 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
             $requestStack
         ));
         $dispatcher->addSubscriber(new ResponseListener('UTF-8'));
+
+        $c = new ContainerBuilder();
+        // https://symfony.com/doc/current/service_container.html
+
+        $c->autowire(TemplateNameParser::class)
+            ->setAutoconfigured(true)
+            ->setPublic(false);
+        $c->setAlias(TemplateNameParserInterface::class, TemplateNameParser::class);
+
+        $c->autowire(Twig_Loader_Array::class, Twig_Loader_Array::class)
+            ->setArgument('$templates', ['index.html.twig' => 'Hello Component!'])
+            ->setAutoconfigured(true)
+            ->setPublic(false);
+        $c->setAlias(Twig_LoaderInterface::class, Twig_Loader_Array::class);
+
+        $c->autowire(Twig_Environment::class, Twig_Environment::class)
+            ->setAutoconfigured(true)
+            ->setPublic(false);
+        $c->setAlias(Twig\Environment::class, Twig_Environment::class);
+
+        $c->autowire(TwigEngine::class)
+            ->setAutoconfigured(true)
+            ->setPublic(false);
+        $c->setAlias(EngineInterface::class, TwigEngine::class);
+
+        if (in_array($this->getEnvironment(), ['test'], true)) {
+            $c->autowire('test.client', Client::class)
+                ->setPublic(true); // Public needed!
+        }
+
+        //Controllers
+        $c->autowire(EngineAsArgumentController::class)
+            ->setAutoconfigured(true)
+            ->addTag('controller.service_arguments')
+            ->setPublic(false);
+
         $this->assertInstanceOf(
             // Response::class, // 5.4 < php
             'Symfony\Component\HttpFoundation\Response',
             (new HttpKernel(
                 $dispatcher,
-                new ControllerResolver(),
+                new ContainerControllerResolver($c),
                 $requestStack,
                 new ArgumentResolver()
             ))->handle(Request::create('/', 'GET'))
