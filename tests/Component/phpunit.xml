@@ -11,8 +11,8 @@
 
     <testsuites>
         <testsuite name="Component">
-            <file>tests/ApplicationAvailabilityComponentFunctionalTest.php</file>
-            <file>tests/DefaultControllerComponentTest.php</file>
+            <file>../ApplicationAvailabilityComponentFunctionalTest.php</file>
+            <file>../DefaultControllerComponentTest.php</file>
         </testsuite>
     </testsuites>
 
