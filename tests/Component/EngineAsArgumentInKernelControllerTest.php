@@ -11,6 +11,7 @@
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Twig\TwigEngine;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Templating\TemplateNameParser;
 use SymfonyUtil\Controller\EngineAsArgumentController;
@@ -18,14 +19,23 @@ use SymfonyUtil\Controller\EngineAsArgumentController;
 /**
  * @covers \SymfonyUtil\Controller\EngineAsArgumentController
  */
-final class EngineAsArgumentControllerTest extends TestCase
+final class EngineAsArgumentInKernelControllerTest extends TestCase
 {
     public function testCanBeCreated()
     {
         $this->assertInstanceOf(
-            // EngineAsArgumentController::class, // 5.4 < php
-            'SymfonyUtil\Controller\EngineAsArgumentController',
-            new EngineAsArgumentController()
+            // ...::class, // 5.4 < php
+            'Symfony\Component\HttpKernel\Kernel',
+            new AppKernel('dev', true)
+        );
+    }
+
+    public function testKernelInterface()
+    {
+        $this->assertInstanceOf(
+            // ...::class, // 5.4 < php
+            'Symfony\Component\HttpKernel\KernelInterface',
+            new AppKernel('dev', true)
         );
     }
 
@@ -34,10 +44,7 @@ final class EngineAsArgumentControllerTest extends TestCase
         $this->assertInstanceOf(
             // Response::class, // 5.4 < php
             'Symfony\Component\HttpFoundation\Response',
-            (new EngineAsArgumentController())->__invoke(new TwigEngine(
-                new Twig_Environment(new Twig_Loader_Array(['index.html.twig' => 'Hello World!'])),
-                new TemplateNameParser()
-            ))
+            (new AppKernel('dev', true))->handle(Request::create('/', 'GET'))
         );
     }
 }
