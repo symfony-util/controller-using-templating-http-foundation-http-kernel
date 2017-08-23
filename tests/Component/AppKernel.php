@@ -84,7 +84,20 @@ class AppKernel extends Kernel
         //     'secret' => 'NotSecret', // What about use $ uuid -v4  or $ uuidgen
         // ]);
     }
-}
+
+    public function registerContainerConfiguration(LoaderInterface $loader)
+    {
+        $loader->load(function (ContainerBuilder $container) use ($loader) {
+            // $container->loadFromExtension('framework', array(
+            //     'router' => array(
+            //         'resource' => 'kernel:loadRoutes',
+            //         'type' => 'service',
+            //     ),
+            // ));
+            $this->configureContainer($container, $loader);
+            $container->addObjectResource($this);
+        });
+    }}
 
 // Information for Service "test.client"
 // =====================================
