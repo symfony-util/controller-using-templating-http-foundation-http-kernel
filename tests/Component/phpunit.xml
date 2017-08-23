@@ -6,7 +6,7 @@
     verbose="true">
 
     <php>
-        <server name="KERNEL_DIR" value="tests/Component/src" />
+        <server name="KERNEL_DIR" value="tests/Component" />
     </php>
 
     <testsuites>
