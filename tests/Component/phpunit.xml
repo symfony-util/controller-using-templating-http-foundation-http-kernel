@@ -12,7 +12,6 @@
     <testsuites>
         <testsuite name="Component">
             <directory suffix="Test.php">.</directory>
-            <directory suffix="Test.php">../WebTestCase</directory>
         </testsuite>
     </testsuites>
 
