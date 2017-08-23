@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/5.7/phpunit.xsd"
+    bootstrap="vendor/autoload.php"
+    processIsolation="true"
+    verbose="true">
+
+    <php>
+        <server name="KERNEL_DIR" value="tests/Framework/src" />
+    </php>
+
+    <testsuites>
+        <testsuite name="Framework">
+            <file>tests/ApplicationAvailabilityFunctionalTest.php</file>
+            <file>tests/DefaultControllerTest.php</file>
+        </testsuite>
+    </testsuites>
+
+</phpunit>
+
+<!--
+         backupGlobals="false"
+beStrictAboutCoversAnnotation="true"
+         beStrictAboutOutputDuringTests="true"
+         beStrictAboutTestsThatDoNotTestAnything="true"
+         beStrictAboutTodoAnnotatedTests="true"
+
+    <testsuite name="Component">
+            <php>
+                <server name="KERNEL_DIR" value="tests/src/Component" />
+            </php>
+        <file>tests/ApplicationAvailabilityComponentFunctionalTest.php</file>
+        <file>tests/DefaultControllerComponentTest.php</file>
+    </testsuite>
+
+        <directory suffix="Test.php">tests</directory>
+
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">.</directory>
+            <exclude>
+                <directory suffix=".php">vendor</directory>
+            </exclude>
+            <exclude>
+                <directory suffix=".php">tests</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+
+    <logging>
+        <log type="coverage-clover" target="/tmp/coverage.xml"/>
+        <log type="coverage-text" target="php://stdout"/>
+    </logging>
+-->
