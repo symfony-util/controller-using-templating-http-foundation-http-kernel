@@ -13,8 +13,6 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Twig\TwigEngine;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Templating\TemplateNameParser;
-use SymfonyUtil\Controller\EngineAsArgumentController;
 use Tests\Component\AppKernel;
 
 /**
