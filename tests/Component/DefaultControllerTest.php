@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Tests\Controller;
+// namespace Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class DefaultControllerComponentTest extends WebTestCase
+class DefaultControllerTest extends WebTestCase
 {
     public function testIndex()
     {
