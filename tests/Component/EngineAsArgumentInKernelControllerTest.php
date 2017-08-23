@@ -11,13 +11,14 @@
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Twig\TwigEngine;
+use Symfony\Bundle\FrameworkBundle\Controller\ControllerResolver;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Controller\ArgumentResolver;
-use Symfony\Component\HttpKernel\Controller\ContainerControllerResolver;
+// use Symfony\Component\HttpKernel\Controller\ContainerControllerResolver;
 use Symfony\Component\HttpKernel\EventListener\ResponseListener;
 use Symfony\Component\HttpKernel\EventListener\RouterListener;
 use Symfony\Component\HttpKernel\HttpKernel;
@@ -62,7 +63,6 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
         );
     }
 
-    /*
     public function testComponentReturnsResponse()
     {
         $requestStack = new RequestStack();
@@ -117,13 +117,13 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
             'Symfony\Component\HttpFoundation\Response',
             (new HttpKernel(
                 $dispatcher,
-                new ContainerControllerResolver($c),
+                new ControllerResolver($c),
                 $requestStack,
                 new ArgumentResolver()
             ))->handle(Request::create('/', 'GET'))
         );
     }
-    */
+    
 }
 
 // http://api.symfony.com/3.3/Symfony/Bridge/Twig/TwigEngine.html
