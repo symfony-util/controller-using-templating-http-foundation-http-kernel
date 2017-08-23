@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+namespace Tests\Component;
+
 use Symfony\Bridge\Twig\TwigEngine;
 use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
