@@ -13,7 +13,6 @@ use Symfony\Bridge\Twig\TwigEngine;
 use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
-// use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
@@ -34,7 +33,6 @@ class AppKernel extends Kernel
     {
         return [
             new FrameworkBundle(),
-            // new TwigBundle(),
         ];
     }
 
@@ -64,15 +62,15 @@ class AppKernel extends Kernel
 
         $c->autowire(TwigEngine::class)
             ->setAutoconfigured(true)
-            ->setShared(true) // not needed: default
+            // ->setShared(true) // not needed: default
             ->setPublic(false);
         $c->setAlias(EngineInterface::class, TwigEngine::class);
 
         if (in_array($this->getEnvironment(), ['test'], true)) {
             $c->autowire('test.client', Client::class)
-                ->setAutoconfigured(false)
-                ->setShared(false)
-                ->setPublic(true); // sure?
+                // ->setAutoconfigured(false)
+                // ->setShared(false)
+                ->setPublic(false); // sure? -> better
         }
 
         //Controllers
@@ -84,13 +82,7 @@ class AppKernel extends Kernel
         // Extensions
         $c->loadFromExtension('framework', [
             'secret' => 'NotSecret', // What about use $ uuid -v4  or $ uuidgen
-            // 'test' => in_array($this->getEnvironment(), ['test'], true), // test.client service for eg. PHPUnit
-            // 'templating' => ['engines' => 'twig'],
         ]);
-        // $c->loadFromExtension('twig', [
-        //     'debug' => true,
-        //     'paths' => ['%kernel.project_dir%/tests/templates'],
-        // ]);
     }
 }
 
