@@ -84,7 +84,6 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
             ->setAutoconfigured(true)
             ->setPublic(false);
         $c->setAlias(TemplateNameParserInterface::class, TemplateNameParser::class);
-/*
 
         $c->autowire(Twig_Loader_Array::class, Twig_Loader_Array::class)
             ->setArgument('$templates', ['index.html.twig' => 'Hello Component!'])
@@ -105,6 +104,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
         // Unit Testing
         // $c->autowire('test.client', Client::class)
         //     ->setPublic(true); // Public needed!
+/*
 
         //Controllers
         $c->autowire(EngineAsArgumentController::class)
