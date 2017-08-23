@@ -24,6 +24,9 @@ use Symfony\Component\HttpKernel\HttpKernel;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\RouteCollectionBuilder;
+use Symfony\Component\Templating\EngineInterface;
+use Symfony\Component\Templating\TemplateNameParser;
+use Symfony\Component\Templating\TemplateNameParserInterface;
 use SymfonyUtil\Controller\EngineAsArgumentController;
 use Tests\Component\AppKernel;
 
@@ -67,7 +70,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
         $dispatcher = new EventDispatcher();
         $dispatcher->addSubscriber(new RouterListener(
             new UrlMatcher(
-                $routes->build(), 
+                $routes->build(),
                 new RequestContext()
             ),
             $requestStack
@@ -98,10 +101,9 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
             ->setPublic(false);
         $c->setAlias(EngineInterface::class, TwigEngine::class);
 
-        if (in_array($this->getEnvironment(), ['test'], true)) {
-            $c->autowire('test.client', Client::class)
-                ->setPublic(true); // Public needed!
-        }
+        // Unit Testing
+        // $c->autowire('test.client', Client::class)
+        //     ->setPublic(true); // Public needed!
 
         //Controllers
         $c->autowire(EngineAsArgumentController::class)
