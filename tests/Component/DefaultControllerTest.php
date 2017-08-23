@@ -9,8 +9,6 @@
  * file that was distributed with this source code.
  */
 
-// namespace Tests\Controller;
-
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class DefaultControllerTest extends WebTestCase
