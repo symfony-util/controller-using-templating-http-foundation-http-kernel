@@ -4,20 +4,15 @@
          bootstrap="vendor/autoload.php"
          processIsolation="true"
          verbose="true">
+
+         <php>
+                <server name="KERNEL_DIR" value="tests/src/Framework" />
+         </php>
+
   <testsuites>
     <testsuite name="Framework">
-            <php>
-                <server name="KERNEL_DIR" value="tests/src/Framework" />
-            </php>
         <file>tests/ApplicationAvailabilityFunctionalTest.php</file>
         <file>tests/DefaultControllerTest.php</file>
-    </testsuite>
-    <testsuite name="Component">
-            <php>
-                <server name="KERNEL_DIR" value="tests/src/Component" />
-            </php>
-        <file>tests/ApplicationAvailabilityComponentFunctionalTest.php</file>
-        <file>tests/DefaultControllerComponentTest.php</file>
     </testsuite>
   </testsuites>
 
@@ -29,7 +24,16 @@ beStrictAboutCoversAnnotation="true"
          beStrictAboutTestsThatDoNotTestAnything="true"
          beStrictAboutTodoAnnotatedTests="true"
 
+    <testsuite name="Component">
+            <php>
+                <server name="KERNEL_DIR" value="tests/src/Component" />
+            </php>
+        <file>tests/ApplicationAvailabilityComponentFunctionalTest.php</file>
+        <file>tests/DefaultControllerComponentTest.php</file>
+    </testsuite>
+
         <directory suffix="Test.php">tests</directory>
+
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">.</directory>
