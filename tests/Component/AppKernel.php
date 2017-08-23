@@ -35,7 +35,7 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         return [
-            new FrameworkBundle(),
+            // new FrameworkBundle(),
         ];
     }
 
@@ -80,9 +80,9 @@ class AppKernel extends Kernel
             ->setPublic(false);
 
         // Extensions
-        $c->loadFromExtension('framework', [
-            'secret' => 'NotSecret', // What about use $ uuid -v4  or $ uuidgen
-        ]);
+        // $c->loadFromExtension('framework', [
+        //     'secret' => 'NotSecret', // What about use $ uuid -v4  or $ uuidgen
+        // ]);
     }
 }
 
