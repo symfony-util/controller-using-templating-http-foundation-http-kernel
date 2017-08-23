@@ -79,7 +79,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
 
         $c = new ContainerBuilder();
         // https://symfony.com/doc/current/service_container.html
-
+/*
         $c->autowire(TemplateNameParser::class)
             ->setAutoconfigured(true)
             ->setPublic(false);
@@ -110,7 +110,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
             ->setAutoconfigured(true)
             ->addTag('controller.service_arguments')
             ->setPublic(false);
-
+*/
         $this->assertInstanceOf(
             // Response::class, // 5.4 < php
             'Symfony\Component\HttpFoundation\Response',
