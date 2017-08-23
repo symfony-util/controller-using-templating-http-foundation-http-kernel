@@ -95,7 +95,7 @@ class AppKernel extends Kernel
             //     ),
             // ));
             $this->configureContainer($container, $loader);
-            $container->addObjectResource('http_kernel', $this);
+            $container->addObjectResource($this);
         });
     }}
 
