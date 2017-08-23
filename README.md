@@ -14,8 +14,12 @@ Controller which renders a template and returns a response (HttpFoundation): dep
 [![SensioLabsInsight](https://img.shields.io/sensiolabs/i/20fdf909-deda-46fa-9fb5-dc2cdf778c05.svg)](https://insight.sensiolabs.com/projects/20fdf909-deda-46fa-9fb5-dc2cdf778c05)
 -->
 
+## Usefullness
+* To be sure than Symfony >= 3.3 as required to call the controller with templating engin as argument.
+* Additional functional testing calling the controller from HttpKernel or FrameworkBundle.
+
 ## Possible improvements
 * Use (yaml) configuraton for test Kernel(s), instead of in php code configuration
-* Tests do not use 2 Kernels as intended, the first one configured is the only one!
+* Tests do not use 2 Kernels as intended, the first one configured is the only one! Corrected, OK now!
 
 Icon: https://material.io/icons/#ic_wallpaper
