@@ -79,11 +79,12 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
 
         $c = new ContainerBuilder();
         // https://symfony.com/doc/current/service_container.html
-/*
+
         $c->autowire(TemplateNameParser::class)
             ->setAutoconfigured(true)
             ->setPublic(false);
         $c->setAlias(TemplateNameParserInterface::class, TemplateNameParser::class);
+/*
 
         $c->autowire(Twig_Loader_Array::class, Twig_Loader_Array::class)
             ->setArgument('$templates', ['index.html.twig' => 'Hello Component!'])
