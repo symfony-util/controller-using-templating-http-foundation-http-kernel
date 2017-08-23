@@ -79,7 +79,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
                 $dispatcher,
                 new ControllerResolver(),
                 $requestStack,
-                new ArgumentResolver(),
+                new ArgumentResolver()
             ))->handle(Request::create('/', 'GET'))
         );
     }
