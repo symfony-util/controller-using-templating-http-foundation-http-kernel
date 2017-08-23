@@ -15,6 +15,6 @@ class WebTestCase extends FrameworkBundleWebTestCase
 {
     protected static function getKernelClass()
     {
-        return Kernel::class;
+        return AppKernel::class;
     }
 }
