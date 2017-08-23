@@ -11,8 +11,8 @@
 
     <testsuites>
         <testsuite name="Component">
-            <file>../ApplicationAvailabilityComponentFunctionalTest.php</file>
-            <file>../DefaultControllerComponentTest.php</file>
+            <directory suffix="Test.php">.</directory>
+            <directory suffix="Test.php">../WebTestCase</directory>
         </testsuite>
     </testsuites>
 
@@ -25,7 +25,7 @@ beStrictAboutCoversAnnotation="true"
          beStrictAboutTestsThatDoNotTestAnything="true"
          beStrictAboutTodoAnnotatedTests="true"
 
-        <directory suffix="Test.php">tests</directory>
+            <file>../DefaultControllerComponentTest.php</file>
 
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
