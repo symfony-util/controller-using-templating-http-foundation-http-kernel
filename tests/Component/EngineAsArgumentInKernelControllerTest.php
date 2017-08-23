@@ -11,14 +11,14 @@
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Twig\TwigEngine;
-use Symfony\Bundle\FrameworkBundle\Controller\ControllerResolver;
+// use Symfony\Bundle\FrameworkBundle\Controller\ControllerResolver; // Do not know how to configure this.
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Controller\ArgumentResolver;
-// use Symfony\Component\HttpKernel\Controller\ContainerControllerResolver;
+use Symfony\Component\HttpKernel\Controller\ContainerControllerResolver;
 use Symfony\Component\HttpKernel\EventListener\ResponseListener;
 use Symfony\Component\HttpKernel\EventListener\RouterListener;
 use Symfony\Component\HttpKernel\HttpKernel;
@@ -67,7 +67,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
     {
         $requestStack = new RequestStack();
         $routes = new RouteCollectionBuilder(); // Because I know how to use it.
-        $routes->add('/', EngineAsArgumentController::class, 'index'); // returns Symfony/Component/Routing/Route
+        $routes->add('/', EngineAsArgumentController::class.'::__invoke', 'index'); // returns Symfony/Component/Routing/Route
         $dispatcher = new EventDispatcher();
         $dispatcher->addSubscriber(new RouterListener(
             new UrlMatcher(
@@ -117,7 +117,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
             'Symfony\Component\HttpFoundation\Response',
             (new HttpKernel(
                 $dispatcher,
-                new ControllerResolver($c),
+                new ContainerControllerResolver($c),
                 $requestStack,
                 new ArgumentResolver()
             ))->handle(Request::create('/', 'GET'))
