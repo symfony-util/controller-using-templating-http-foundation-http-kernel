@@ -62,6 +62,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
         );
     }
 
+    /*
     public function testComponentReturnsResponse()
     {
         $requestStack = new RequestStack();
@@ -79,7 +80,6 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
 
         $c = new ContainerBuilder();
         // https://symfony.com/doc/current/service_container.html
-/*
 
         $c->autowire(TemplateNameParser::class)
             ->setAutoconfigured(true)
@@ -101,7 +101,6 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
             ->setAutoconfigured(true)
             ->setPublic(false);
         $c->setAlias(EngineInterface::class, TwigEngine::class);
-*/
 
         // Unit Testing
         // $c->autowire('test.client', Client::class)
@@ -124,6 +123,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
             ))->handle(Request::create('/', 'GET'))
         );
     }
+    */
 }
 
 // http://api.symfony.com/3.3/Symfony/Bridge/Twig/TwigEngine.html
