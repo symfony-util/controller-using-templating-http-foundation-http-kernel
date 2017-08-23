@@ -62,15 +62,12 @@ class AppKernel extends Kernel
 
         $c->autowire(TwigEngine::class)
             ->setAutoconfigured(true)
-            // ->setShared(true) // not needed: default
             ->setPublic(false);
         $c->setAlias(EngineInterface::class, TwigEngine::class);
 
         if (in_array($this->getEnvironment(), ['test'], true)) {
             $c->autowire('test.client', Client::class)
-                // ->setAutoconfigured(false)
-                // ->setShared(false)
-                ->setPublic(true); // sure? -> better
+                ->setPublic(true); // Public needed!
         }
 
         //Controllers
