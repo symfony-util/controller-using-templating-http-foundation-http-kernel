@@ -26,6 +26,7 @@ use SymfonyUtil\Controller\EngineAsArgumentController;
 
 // use Twig_Environment;
 // use Twig_Loader_Array;
+// use Twig_LoaderInterface;
 
 class AppKernel extends Kernel
 {
@@ -62,10 +63,10 @@ class AppKernel extends Kernel
             ->setPublic(false);
         $c->setAlias(\Twig\Environment::class, \Twig_Environment::class);
 
-        $c->autowire(\TwigEngine::class)
+        $c->autowire(TwigEngine::class)
             ->setAutoconfigured(true)
             ->setPublic(false);
-        $c->setAlias(EngineInterface::class, \TwigEngine::class);
+        $c->setAlias(EngineInterface::class, TwigEngine::class);
 
         if (in_array($this->getEnvironment(), ['test'], true)) {
             $c->autowire('test.client', Client::class)
