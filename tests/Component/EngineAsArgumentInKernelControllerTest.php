@@ -72,7 +72,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
         );
     }
 
-    public function testKernelInterface()
+    public function tesContainerInterface()
     {
         $this->assertInstanceOf(
             // ...::class, // 5.4 < php
