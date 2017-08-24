@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace SymfonyUtil\Controller;
+namespace Tests\Component;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
