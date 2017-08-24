@@ -63,7 +63,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
         );
     }
 
-    public function containerCanBeCreated()
+    public function testContainerCanBeCreated()
     {
         $this->assertInstanceOf(
             // ...::class, // 5.4 < php
@@ -72,7 +72,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
         );
     }
 
-    public function tesContainerInterface()
+    public function testContainerInterface()
     {
         $this->assertInstanceOf(
             // ...::class, // 5.4 < php
