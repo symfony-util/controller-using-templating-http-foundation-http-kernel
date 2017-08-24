@@ -63,6 +63,24 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
         );
     }
 
+    public function containerCanBeCreated()
+    {
+        $this->assertInstanceOf(
+            // ...::class, // 5.4 < php
+            'Symfony\Component\DependencyInjection\ContainerBuilder',
+            $this->container()
+        );
+    }
+
+    public function testKernelInterface()
+    {
+        $this->assertInstanceOf(
+            // ...::class, // 5.4 < php
+            'psr\Container\ContainerInterface',
+            $this->container()
+        );
+    }
+
     /*
     public function testComponentReturnsResponse()
     {
@@ -81,6 +99,22 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
         ));
         $dispatcher->addSubscriber(new ResponseListener('UTF-8'));
 
+
+        $this->assertInstanceOf(
+            // Response::class, // 5.4 < php
+            'Symfony\Component\HttpFoundation\Response',
+            (new HttpKernel(
+                $dispatcher,
+                new ContainerControllerResolver($c),
+                $requestStack,
+                new ArgumentResolver()
+            ))->handle(Request::create('/', 'GET'))
+        );
+    }
+    */
+
+    private function container()
+    {
         $c = new ContainerBuilder();
         // https://symfony.com/doc/current/service_container.html
 
@@ -115,22 +149,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
             ->addTag('controller.service_arguments')
             ->setPublic(false);
 
-        $this->assertInstanceOf(
-            // Response::class, // 5.4 < php
-            'Symfony\Component\HttpFoundation\Response',
-            (new HttpKernel(
-                $dispatcher,
-                new ContainerControllerResolver($c),
-                $requestStack,
-                new ArgumentResolver()
-            ))->handle(Request::create('/', 'GET'))
-        );
-    }
-    */
-
-    private function container()
-    {
-        return new ContainerBuilder();
+        return $c;
     }
 }
 
