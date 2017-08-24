@@ -65,7 +65,9 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
     }
 
     public function testControllerResponse()
-    {
+    { // From: https://symfony.com/doc/current/create_framework/unit_testing.html
+        // TODO: Try with a real matcher
+        // TODO: Use real controller to be tested!
         $matcher = $this->createMock(UrlMatcherInterface::class);
         // use getMock() on PHPUnit 5.3 or below
         // $matcher = $this->getMock(UrlMatcherInterface::class);
@@ -92,7 +94,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
         $dispatcher->addSubscriber(new RouterListener(
             $matcher,
             $requestStack
-        ));
+        )); // Returns nothing.
         $dispatcher->addSubscriber(new ResponseListener('UTF-8'));
         $response = (new HttpKernel(
             $dispatcher,
@@ -125,13 +127,14 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
         );
     }
 
-    public function ComponentReturnsResponse() // Not yet a test!
+    public function testComponentReturnsResponse() // Not yet a test!
     {
+        // TODO: Use real controller to be tested!
         $requestStack = new RequestStack();
         $dispatcher = new EventDispatcher();
         $dispatcher->addSubscriber(new RouterListener(
             new UrlMatcher(
-                $this->loadRoutes(),
+                $this->loadJustHelloRoutes(),
                 new RequestContext()
             ),
             $requestStack
@@ -143,7 +146,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
             'Symfony\Component\HttpFoundation\Response',
             (new HttpKernel(
                 $dispatcher,
-                new ContainerControllerResolver($c),
+                new ContainerControllerResolver($this->container()),
                 $requestStack,
                 new ArgumentResolver()
             ))->handle(Request::create('/', 'GET'))
@@ -158,6 +161,27 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
     }
 
     private function loadRoutes(LoaderInterface $loader = null)
+    { // from Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait
+        $routes = new RouteCollectionBuilder($loader);
+        $this->configureRoutes($routes);
+
+        return $routes->build();
+    }
+
+    private function configureJustHelloRoutes(RouteCollectionBuilder $routes)
+    { // from Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait
+        $routes->add(
+            '/',
+            function () {
+                return new Response('Hello');
+            },
+            'index'
+        ); // .'::__invoke'
+        //^ It should be tested if the actually used controller resolver can resolve this!
+        //^ Returns Symfony/Component/Routing/Route .
+    }
+
+    private function loadJustHelloRoutes(LoaderInterface $loader = null)
     { // from Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait
         $routes = new RouteCollectionBuilder($loader);
         $this->configureRoutes($routes);
