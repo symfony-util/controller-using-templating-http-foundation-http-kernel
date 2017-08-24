@@ -62,7 +62,7 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         return [
-            // new FrameworkBundle(),
+            new FrameworkBundle(),
         ];
     }
 
@@ -84,6 +84,9 @@ class AppKernel extends Kernel
     {
         // https://symfony.com/doc/current/service_container.html
         // HttpKernel has to be added!
+        // TODO: find the right way to configure the service_container!!
+        // It does not replace the framework yet, but this is probably based on a config older than Symfony 3.3
+        // TODO: reaorganize in different files by dependecy and use eg. HttpKernel, Matcher, ... allowing for alternatives
 
         $c->register('event_dispatcher', ContainerAwareEventDispatcher::class) // services.xml
             // TODO: Obsolete use EventDispatcher instead, but may cause other problems
@@ -263,9 +266,9 @@ class AppKernel extends Kernel
             ->setPublic(false);
 
         // Extensions
-        // $c->loadFromExtension('framework', [
-        //     'secret' => 'NotSecret', // What about use $ uuid -v4  or $ uuidgen
-        // ]);
+        $c->loadFromExtension('framework', [
+            'secret' => 'NotSecret', // What about use $ uuid -v4  or $ uuidgen
+        ]);
     }
 }
 
