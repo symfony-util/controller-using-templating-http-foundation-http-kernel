@@ -17,7 +17,7 @@ matrix:
     - php: nightly
     # - php: 5.4
   include:
-    # - php: 5.4 # symfony/http-kernel v3.3.6 requires php >=5.5.9 -> your PHP version (5.4.45) does not satisfy that requirement.
+#    - php: 5.4 # symfony/http-kernel v3.3.6 requires php >=5.5.9 -> your PHP version (5.4.45) does not satisfy that requirement.
 #    - php: 5.5
 #       env:
 #         - PHPUNIT=phpunit-4.8
