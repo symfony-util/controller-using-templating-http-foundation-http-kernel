@@ -22,8 +22,11 @@ use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\ControllerArgume
 use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\RoutingResolverPass;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
+use Symfony\Bundle\FrameworkBundle\Routing\DelegatingLoader;
+use Symfony\Bundle\FrameworkBundle\Routing\RedirectableUrlMatcher;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\Config\Loader\LoaderResolver;
 use Symfony\Component\Config\ResourceCheckerConfigCacheFactory;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -40,6 +43,8 @@ use Symfony\Component\HttpKernel\Kernel; // Manages an environment made of bundl
 use Symfony\Component\HttpKernel\UriSigner;
 use Symfony\Component\Routing\Generator\Dumper\PhpGeneratorDumper;
 use Symfony\Component\Routing\Generator\UrlGenerator;
+use Symfony\Component\Routing\Loader\DependencyInjection\ServiceRouterLoader;
+use Symfony\Component\Routing\Matcher\Dumper\PhpMatcherDumper;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\Templating\TemplateNameParser;
@@ -165,17 +170,17 @@ class AppKernel extends Kernel
             ->setPublic(false)
         ;
 
-        $c->register('routing.loader.service',                            ServiceRouterLoader::class) // routing.xml
+        $c->register('routing.loader.service', ServiceRouterLoader::class) // routing.xml
 //            ->setPublic(false)
             ->addTag('routing.loader')
             ->addArgument(new Reference('service_container'))
         ;
-        $c->register('routing.loader',                            DelegatingLoader::class) // routing.xml
+        $c->register('routing.loader', DelegatingLoader::class) // routing.xml
             ->addArgument(new Reference('controller_name_converter'))
             ->addArgument(new Reference('routing.resolver'))
         ;
 //...
-        $c->register('router.default',                            Router::class) // routing.xml
+        $c->register('router.default', Router::class) // routing.xml
 //            ->setPublic(false)
             ->addTag('monolog.logger', ['channel' => 'router'])
             ->addArgument(new Reference('service_container'))
@@ -199,7 +204,7 @@ class AppKernel extends Kernel
         ;
         $c->setAlias('router', 'router.default');
 
-        $c->register('router_listener',                            RouterListener::class) // routing.xml
+        $c->register('router_listener', RouterListener::class) // routing.xml
             ->addTag('kernel.event_subscriber')
             ->addTag('monolog.logger', ['channel' => 'request'])
             ->addArgument(new Reference('router'))
