@@ -49,13 +49,12 @@ matrix:
     - php: 7.2
     - php: nightly
   exclude: # To use less CPU during debug
-    - php:
-      - 5.4
-      - 5.5
-      - 5.6
-      - 7.0
-      - 7.2
-      - nightly
+    - php: 5.4
+      # - 5.5
+      # - 5.6
+      # - 7.0
+      # - 7.2
+      # - nightly
 
 before_install:
   - echo $PHPUNIT
