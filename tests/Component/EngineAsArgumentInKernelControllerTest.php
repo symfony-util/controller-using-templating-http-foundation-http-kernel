@@ -127,6 +127,11 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
         );
     }
     */
+
+    private function container()
+    {
+        return new ContainerBuilder();
+    }
 }
 
 // http://api.symfony.com/3.3/Symfony/Bridge/Twig/TwigEngine.html
