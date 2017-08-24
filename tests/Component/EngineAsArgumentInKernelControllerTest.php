@@ -28,6 +28,7 @@ use Symfony\Component\HttpKernel\Controller\ContainerControllerResolver;
 use Symfony\Component\HttpKernel\Controller\ControllerResolver;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactory;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactoryInterface;
+use Symfony\Component\HttpKernel\DependencyInjection\ControllerArgumentValueResolverPass;
 use Symfony\Component\HttpKernel\DependencyInjection\RegisterControllerArgumentLocatorsPass;
 use Symfony\Component\HttpKernel\EventListener\ResponseListener;
 use Symfony\Component\HttpKernel\EventListener\RouterListener;
@@ -266,6 +267,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
             ->addTag('controller.service_arguments')
             ->setPublic(true); // Checking if needed...
 
+        $c->addCompilerPass(new ControllerArgumentValueResolverPass());
         $c->addCompilerPass(new RegisterControllerArgumentLocatorsPass());
 
         return $c;
