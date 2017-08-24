@@ -88,6 +88,12 @@ class AppKernel extends Kernel
         // It does not replace the framework yet, but this is probably based on a config older than Symfony 3.3
         // TODO: reaorganize in different files by dependecy and use eg. HttpKernel, Matcher, ... allowing for alternatives
 
+        $c->register('service_container')->setSynthetic(true);
+        $c->set('service_container', $c);
+
+        $c->register('kernel')->setSynthetic(true);
+        $c->set('kernel', $this);
+
         $c->register('event_dispatcher', ContainerAwareEventDispatcher::class) // services.xml
             // TODO: Obsolete use EventDispatcher instead, but may cause other problems
             ->addArgument(new Reference('service_container'))
@@ -101,21 +107,6 @@ class AppKernel extends Kernel
         ;
 
         $c->register('request_stack', RequestStack::class); // services.xml
-
-/*
-        $c->register('service_container')
-            ->setSynthetic(true)
-            ->setAutowiringTypes([ContainerInterface::class])
-            ->setAutowiringTypes([Container::class])
-        ;
-        $c->set('service_container', $c);
-        // S3.3 Deprecation note: http://symfony.com/blog/new-in-symfony-3-3-deprecated-the-autowiring-types
-*/
-
-        $c->register('kernel')
-            ->setSynthetic(true)
-        ;
-        $c->set('kernel', $this);
 
         $c->register('uri_signer', UriSigner::class) // services.xml
             ->addArgument('12345') // app config
