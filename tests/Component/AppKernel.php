@@ -90,6 +90,7 @@ class AppKernel extends Kernel
     {
         // https://symfony.com/doc/current/service_container.html
         // HttpKernel has to be added!
+        // TODO: find the way the container is compiled in microKernel, be sure it works....
         // TODO: find the right way to configure the service_container!! cheking...
         // It does not replace the framework yet, but this is probably based on a config older than Symfony 3.3
         // TODO: reaorganize in different files by dependecy and use eg. HttpKernel, Matcher, ... allowing for alternatives
@@ -254,7 +255,7 @@ class AppKernel extends Kernel
         $c->autowire(EngineAsArgumentController::class)
             ->setAutoconfigured(true)
             ->addTag('controller.service_arguments')
-            ->setPublic(false);
+            ->setPublic(true); // Checking if needed...
 
         // https://github.com/symfony/framework-bundle/blob/current/Resources/config/web.xml
         $c->autowire(RequestAttributeValueResolver::class) // argument_resolver.request_attribute
