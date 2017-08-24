@@ -75,8 +75,8 @@ class AppKernel extends Kernel
 
     protected function configureRoutes(RouteCollectionBuilder $routes)
     {
-        // $routes->add('/', EngineAsArgumentController::class, 'index');
-        $routes->add('/', EngineAsArgumentFrameworkController::class, 'index');
+        $routes->add('/', EngineAsArgumentController::class, 'index');
+        // $routes->add('/', EngineAsArgumentFrameworkController::class, 'index');
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)
