@@ -219,13 +219,6 @@ class AppKernel extends Kernel
             ->addArgument(new Reference('logger', ContainerInterface::IGNORE_ON_INVALID_REFERENCE))
         ;
 
-        // $c->setParameter('', );
-        $c->addCompilerPass(new RoutingResolverPass());
-        $c->addCompilerPass(new RegisterListenersPass(), PassConfig::TYPE_BEFORE_REMOVING);
-        // $c->addCompilerPass(new AddConsoleCommandPass()); // Depnedency need!
-        $c->addCompilerPass(new AddCacheWarmerPass());
-        $c->addCompilerPass(new AddCacheClearerPass());
-
         $c->autowire(TemplateNameParser::class)
             ->setAutoconfigured(true)
             ->setPublic(false);
@@ -254,6 +247,7 @@ class AppKernel extends Kernel
 
         //Controllers
         $c->autowire(ServiceValueResolver::class) // argument_resolver.service
+            ->setArgument('$container', new Reference('service_container'))
             ->addTag('controller.argument_value_resolver', array('priority' => -50))->setPublic(false);
         // https://symfony.com/doc/current/controller/argument_value_resolver.html
         // http://api.symfony.com/3.3/Symfony/Component/HttpKernel/Controller/ArgumentResolver/ServiceValueResolver.html
@@ -262,6 +256,12 @@ class AppKernel extends Kernel
             ->setAutoconfigured(true)
             ->addTag('controller.service_arguments')
             ->setPublic(false);
+
+        $c->addCompilerPass(new RoutingResolverPass());
+        $c->addCompilerPass(new RegisterListenersPass(), PassConfig::TYPE_BEFORE_REMOVING);
+        // $c->addCompilerPass(new AddConsoleCommandPass()); // Dependency need!
+        $c->addCompilerPass(new AddCacheWarmerPass());
+        $c->addCompilerPass(new AddCacheClearerPass());
         $c->addCompilerPass(new ControllerArgumentValueResolverPass());
 
         // Extensions
