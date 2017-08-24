@@ -37,6 +37,10 @@ use Symfony\Component\EventDispatcher\DependencyInjection\RegisterListenersPass;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Controller\ArgumentResolver;
 use Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver;
+use Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestAttributeValueResolver;
+use Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestValueResolver;
+use Symfony\Component\HttpKernel\Controller\ArgumentResolver\SessionValueResolver;
+use Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver;
 use Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactory;
 use Symfony\Component\HttpKernel\EventListener\RouterListener;
@@ -252,13 +256,13 @@ class AppKernel extends Kernel
             ->addTag('controller.service_arguments')
             ->setPublic(false);
 
-        $c->autowire(Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestAttributeValueResolver::class) // argument_resolver.request_attribute
+        $c->autowire(RequestAttributeValueResolver::class) // argument_resolver.request_attribute
             ->setArgument('$container', new Reference('service_container'))
             ->addTag('controller.argument_value_resolver', array('priority' => 100))->setPublic(false);
-        $c->autowire(Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestValueResolver::class) // argument_resolver.request
+        $c->autowire(RequestValueResolver::class) // argument_resolver.request
             ->setArgument('$container', new Reference('service_container'))
             ->addTag('controller.argument_value_resolver', array('priority' => 50))->setPublic(false);
-        $c->autowire(Symfony\Component\HttpKernel\Controller\ArgumentResolver\SessionValueResolver::class) // argument_resolver.session
+        $c->autowire(SessionValueResolver::class) // argument_resolver.session
             ->setArgument('$container', new Reference('service_container'))
             ->addTag('controller.argument_value_resolver', array('priority' => 50))->setPublic(false);
         $c->autowire(ServiceValueResolver::class) // argument_resolver.service
@@ -267,7 +271,7 @@ class AppKernel extends Kernel
         $c->autowire(DefaultValueResolver::class) // argument_resolver.default
             ->setArgument('$container', new Reference('service_container'))
             ->addTag('controller.argument_value_resolver', array('priority' => -100))->setPublic(false);
-        $c->autowire(Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver::class) // argument_resolver.variadic
+        $c->autowire(VariadicValueResolver::class) // argument_resolver.variadic
             ->setArgument('$container', new Reference('service_container'))
             ->addTag('controller.argument_value_resolver', array('priority' => -150))->setPublic(false);
         // https://symfony.com/doc/current/controller/argument_value_resolver.html
