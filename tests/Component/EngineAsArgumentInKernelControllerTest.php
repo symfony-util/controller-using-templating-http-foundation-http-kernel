@@ -18,7 +18,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Controller\ArgumentResolver;
-use Symfony\Component\HttpKernel\Controller\ControllerResolver;
+// use Symfony\Component\HttpKernel\Controller\ControllerResolver;
+use Symfony\Component\HttpKernel\Controller\ContainerControllerResolver;
 use Symfony\Component\HttpKernel\EventListener\ResponseListener;
 use Symfony\Component\HttpKernel\EventListener\RouterListener;
 use Symfony\Component\HttpKernel\HttpKernel;
@@ -98,8 +99,8 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
         $dispatcher->addSubscriber(new ResponseListener('UTF-8'));
         $response = (new HttpKernel(
             $dispatcher,
-            // new ContainerControllerResolver($c),
-            new ControllerResolver(),
+            new ContainerControllerResolver($this->container()),
+            // new ControllerResolver(),
             $requestStack,
             new ArgumentResolver() // OK
         // ))->handle(Request::create('/', 'GET'));
