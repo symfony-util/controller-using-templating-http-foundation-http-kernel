@@ -85,14 +85,10 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
     public function testComponentReturnsResponse()
     {
         $requestStack = new RequestStack();
-        $routes = new RouteCollectionBuilder(); // Because I know how to use it.
-        $routes->add('/', EngineAsArgumentController::class, 'index'); // .'::__invoke'
-        //^ It should be tested if the actually used controller resolver can resolve this!
-        //^ Returns Symfony/Component/Routing/Route .
         $dispatcher = new EventDispatcher();
         $dispatcher->addSubscriber(new RouterListener(
             new UrlMatcher(
-                $routes->build(),
+                $this->loadRoutes(),
                 new RequestContext()
             ),
             $requestStack
@@ -112,6 +108,20 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
         );
     }
     */
+
+    private function configureRoutes(RouteCollectionBuilder $routes)
+    { // from Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait
+        $routes->add('/', EngineAsArgumentController::class, 'index'); // .'::__invoke'
+        //^ It should be tested if the actually used controller resolver can resolve this!
+        //^ Returns Symfony/Component/Routing/Route .
+    }
+
+    private function loadRoutes(LoaderInterface $loader = null)
+    { // from Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait
+        $routes = new RouteCollectionBuilder($loader);
+        $this->configureRoutes($routes);
+        return $routes->build();
+    }
 
     private function container()
     {
