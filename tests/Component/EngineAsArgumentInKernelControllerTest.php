@@ -78,7 +78,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
                 'name' => 'Fabien',
                 '_controller' => function ($name) {
                     return new Response('Hello '.$name);
-                }
+                },
             ]))
         ;
         $matcher
