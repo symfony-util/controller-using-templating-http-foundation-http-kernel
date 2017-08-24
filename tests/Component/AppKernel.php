@@ -22,6 +22,7 @@ use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\Config\ResourceCheckerConfigCacheFactory;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -97,7 +98,7 @@ class AppKernel extends Kernel
             ->addArgument('12345') // app config
         ;
 
-        $c->register('config_cache_factory',                                ResourceCheckerConfigCacheFactory::class) // services.xml
+        $c->register('config_cache_factory', ResourceCheckerConfigCacheFactory::class) // services.xml
             ->addArgument([])
         ;
         $c->register('controller_name_converter',                                ControllerNameParser::class) // web.xml
