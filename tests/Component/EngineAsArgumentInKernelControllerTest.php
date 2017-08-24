@@ -95,6 +95,8 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
             ->will($this->returnValue($this->createMock(RequestContext::class)))
         ;
 
+        $c = $this->container();
+        $c->compile();
         $requestStack = new RequestStack();
         $dispatcher = new EventDispatcher();
         $dispatcher->addSubscriber(new RouterListener(
@@ -104,7 +106,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
         $dispatcher->addSubscriber(new ResponseListener('UTF-8'));
         $response = (new HttpKernel(
             $dispatcher,
-            new ContainerControllerResolver($this->container()),
+            new ContainerControllerResolver($c),
             // new ControllerResolver(),
             $requestStack,
             new ArgumentResolver(
@@ -113,7 +115,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
                     new RequestAttributeValueResolver(),
                     new RequestValueResolver(),
                     new SessionValueResolver(),
-                    new ServiceValueResolver($this->container()),
+                    new ServiceValueResolver($c),
                     new DefaultValueResolver(),
                     new VariadicValueResolver(),
                 ]
