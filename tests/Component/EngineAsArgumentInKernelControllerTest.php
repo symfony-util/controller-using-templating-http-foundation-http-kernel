@@ -18,8 +18,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Controller\ArgumentResolver;
+use Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver;
+use Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestAttributeValueResolver;
+use Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestValueResolver;
+use Symfony\Component\HttpKernel\Controller\ArgumentResolver\SessionValueResolver;
+use Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver;
 use Symfony\Component\HttpKernel\Controller\ContainerControllerResolver;
 use Symfony\Component\HttpKernel\Controller\ControllerResolver;
+use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactory;
+use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactoryInterface;
 use Symfony\Component\HttpKernel\EventListener\ResponseListener;
 use Symfony\Component\HttpKernel\EventListener\RouterListener;
 use Symfony\Component\HttpKernel\HttpKernel;
@@ -99,7 +106,17 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
             new ContainerControllerResolver($this->container()),
             // new ControllerResolver(),
             $requestStack,
-            new ArgumentResolver() // OK
+            new ArgumentResolver(
+                new ArgumentMetadataFactory(),
+                [
+                    new RequestAttributeValueResolver(),
+                    new RequestValueResolver(),
+                    new SessionValueResolver(),
+                    new ServiceValueResolver($this->container()),
+                    new DefaultValueResolver(),
+                    new VariadicValueResolver(),
+                ]
+            )
         // ))->handle(Request::create('/', 'GET'));
         ))->handle(new Request());
 
@@ -147,7 +164,17 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
                 // new ContainerControllerResolver($this->container()),
                 new ControllerResolver(),
                 $requestStack,
-                new ArgumentResolver()
+                new ArgumentResolver(
+                new ArgumentMetadataFactory(),
+                [
+                    new RequestAttributeValueResolver(),
+                    new RequestValueResolver(),
+                    new SessionValueResolver(),
+                    new ServiceValueResolver($this->container()),
+                    new DefaultValueResolver(),
+                    new VariadicValueResolver(),
+                ]
+                )
             ))->handle(Request::create('/', 'GET'))
         );
     }
