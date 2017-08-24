@@ -253,7 +253,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
             ->addTag('controller.service_arguments')
             ->setPublic(true); // Checking if needed...
 
-        $->compile();
+        $c->compile();
 
         return $c;
     }
