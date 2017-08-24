@@ -23,6 +23,7 @@ use Symfony\Component\HttpKernel\EventListener\ResponseListener;
 use Symfony\Component\HttpKernel\EventListener\RouterListener;
 use Symfony\Component\HttpKernel\HttpKernel;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
+use Symfony\Component\Routing\Matcher\UrlMatcherInterface;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 use Symfony\Component\Templating\EngineInterface;
@@ -65,9 +66,9 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
 
     public function testControllerResponse()
     {
-        $matcher = $this->createMock(Routing\Matcher\UrlMatcherInterface::class);
+        $matcher = $this->createMock(UrlMatcherInterface::class);
         // use getMock() on PHPUnit 5.3 or below
-        // $matcher = $this->getMock(Routing\Matcher\UrlMatcherInterface::class);
+        // $matcher = $this->getMock(UrlMatcherInterface::class);
 
         $matcher
             ->expects($this->once())
@@ -83,7 +84,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
         $matcher
             ->expects($this->once())
             ->method('getContext')
-            ->will($this->returnValue($this->createMock(Routing\RequestContext::class)))
+            ->will($this->returnValue($this->createMock(RequestContext::class)))
         ;
 
         $requestStack = new RequestStack();
