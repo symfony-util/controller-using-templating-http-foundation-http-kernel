@@ -18,39 +18,39 @@ matrix:
     # - php: 5.4
   include:
     # - php: 5.4 # symfony/http-kernel v3.3.6 requires php >=5.5.9 -> your PHP version (5.4.45) does not satisfy that requirement.
-    - php: 5.5
-      env:
-        - PHPUNIT=phpunit-4.8
-        - TEST_LINT=`true`
-        - SENSIO_SECURITY=`true`
-    - php: 5.6
-      env:
-        - PHPUNIT=phpunit-5.7
-        - TEST_LINT=`true`
-        - PHP_CS_FIXER=`true`
-        - SENSIO_SECURITY=`true`
-    - php: 7.0
-      env:
-        - PHPUNIT=phpunit
-        - TEST_LINT=`true`
-        - PHP_CS_FIXER=`true`
-        - SENSIO_SECURITY=`true`
+#    - php: 5.5
+#       env:
+#         - PHPUNIT=phpunit-4.8
+#         - TEST_LINT=`true`
+#         - SENSIO_SECURITY=`true`
+#     - php: 5.6
+#       env:
+#         - PHPUNIT=phpunit-5.7
+#         - TEST_LINT=`true`
+#         - PHP_CS_FIXER=`true`
+#         - SENSIO_SECURITY=`true`
+#     - php: 7.0
+#       env:
+#         - PHPUNIT=phpunit
+#         - TEST_LINT=`true`
+#         - PHP_CS_FIXER=`true`
+#         - SENSIO_SECURITY=`true`
     - php: 7.1
       env:
         - PHPUNIT=phpunit
         - TEST_LINT=`true`
         - PHP_CS_FIXER=`true`
         - SENSIO_SECURITY=`true`
-    - php: 7.2
-      env:
-        - PHPUNIT=phpunit
-        - TEST_LINT=`true`
-        - SENSIO_SECURITY=`true`
-    - php: nightly
-      env:
-        - PHPUNIT=phpunit
-        - TEST_LINT=`true`
-        - SENSIO_SECURITY=`true`
+ #    - php: 7.2
+ #      env:
+ #        - PHPUNIT=phpunit
+ #        - TEST_LINT=`true`
+ #        - SENSIO_SECURITY=`true`
+ #    - php: nightly
+ #      env:
+ #        - PHPUNIT=phpunit
+ #        - TEST_LINT=`true`
+ #        - SENSIO_SECURITY=`true`
   allow_failures:
     - php: 5.4
     - php: 5.5 # needs older phpunit
