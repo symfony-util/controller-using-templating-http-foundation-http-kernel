@@ -85,12 +85,22 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
             ->method('getContext')
             ->will($this->returnValue($this->createMock(Routing\RequestContext::class)))
         ;
-        $controllerResolver = new ControllerResolver();
-        $argumentResolver = new ArgumentResolver();
 
-        $framework = new Framework($matcher, $controllerResolver, $argumentResolver);
-
-        $response = $framework->handle(new Request());
+        $requestStack = new RequestStack();
+        $dispatcher = new EventDispatcher();
+        $dispatcher->addSubscriber(new RouterListener(
+            $matcher,
+            $requestStack
+        ));
+        $dispatcher->addSubscriber(new ResponseListener('UTF-8'));
+        $response = (new HttpKernel(
+            $dispatcher,
+            // new ContainerControllerResolver($c),
+            new ControllerResolver(),
+            $requestStack,
+            new ArgumentResolver() // OK
+        // ))->handle(Request::create('/', 'GET'))
+        ))->handle(new Request())
 
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertContains('Hello Fabien', $response->getContent());
