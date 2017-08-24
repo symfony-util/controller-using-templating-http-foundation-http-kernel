@@ -256,22 +256,19 @@ class AppKernel extends Kernel
             ->addTag('controller.service_arguments')
             ->setPublic(false);
 
+        // https://github.com/symfony/framework-bundle/blob/current/Resources/config/web.xml
         $c->autowire(RequestAttributeValueResolver::class) // argument_resolver.request_attribute
             ->addTag('controller.argument_value_resolver', array('priority' => 100))->setPublic(false);
         $c->autowire(RequestValueResolver::class) // argument_resolver.request
-            ->setArgument('$container', new Reference('service_container'))
             ->addTag('controller.argument_value_resolver', array('priority' => 50))->setPublic(false);
         $c->autowire(SessionValueResolver::class) // argument_resolver.session
-            ->setArgument('$container', new Reference('service_container'))
             ->addTag('controller.argument_value_resolver', array('priority' => 50))->setPublic(false);
         $c->autowire(ServiceValueResolver::class) // argument_resolver.service
             ->setArgument('$container', new Reference('service_container'))
             ->addTag('controller.argument_value_resolver', array('priority' => -50))->setPublic(false);
         $c->autowire(DefaultValueResolver::class) // argument_resolver.default
-            ->setArgument('$container', new Reference('service_container'))
             ->addTag('controller.argument_value_resolver', array('priority' => -100))->setPublic(false);
         $c->autowire(VariadicValueResolver::class) // argument_resolver.variadic
-            ->setArgument('$container', new Reference('service_container'))
             ->addTag('controller.argument_value_resolver', array('priority' => -150))->setPublic(false);
         // https://symfony.com/doc/current/controller/argument_value_resolver.html
         // http://api.symfony.com/3.3/Symfony/Component/HttpKernel/Controller/ArgumentResolver/ServiceValueResolver.html
