@@ -23,7 +23,7 @@ use Symfony\Component\HttpKernel\Controller\ContainerControllerResolver;
 use Symfony\Component\HttpKernel\EventListener\ResponseListener;
 use Symfony\Component\HttpKernel\EventListener\RouterListener;
 use Symfony\Component\HttpKernel\HttpKernel;
-use Symfony\Component\Routing\Matcher\UrlMatcher;
+use Symfony\Component\Routing\Matcher\UrlMatcher; // != Symfony\Bundle\FrameworkBundle\Routing\Router
 use Symfony\Component\Routing\Matcher\UrlMatcherInterface;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\RouteCollectionBuilder;
@@ -33,9 +33,6 @@ use Symfony\Component\Templating\TemplateNameParserInterface;
 use SymfonyUtil\Controller\EngineAsArgumentController;
 use Tests\Component\AppKernel;
 
-/**
- * @covers \SymfonyUtil\Controller\EngineAsArgumentController
- */
 final class EngineAsArgumentInKernelControllerTest extends TestCase
 {
     public function testCanBeCreated()
@@ -186,7 +183,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
     private function loadJustHelloRoutes(LoaderInterface $loader = null)
     { // from Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait
         $routes = new RouteCollectionBuilder($loader);
-        $this->configureRoutes($routes);
+        $this->configureJustHelloRoutes($routes);
 
         return $routes->build();
     }
