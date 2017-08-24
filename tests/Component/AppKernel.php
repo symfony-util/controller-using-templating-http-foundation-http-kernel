@@ -94,6 +94,7 @@ class AppKernel extends Kernel
         // TODO: find the right way to configure the service_container!! cheking...
         // It does not replace the framework yet, but this is probably based on a config older than Symfony 3.3
         // TODO: reaorganize in different files by dependecy and use eg. HttpKernel, Matcher, ... allowing for alternatives
+        // TODO: Read doc di component and load the config xml files from the framework bundle
 
         $c->register('kernel')->setSynthetic(true);
         $c->set('kernel', $this);
@@ -245,6 +246,7 @@ class AppKernel extends Kernel
             ->setAutoconfigured(true)
             ->setPublic(false);
         $c->setAlias(EngineInterface::class, TwigEngine::class);
+        $c->setAlias('templating', TwigEngine::class); // Read Symfony source code to understand!
 
         if (in_array($this->getEnvironment(), ['test'], true)) {
             $c->autowire('test.client', Client::class)
