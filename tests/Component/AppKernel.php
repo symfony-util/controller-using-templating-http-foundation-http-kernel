@@ -261,6 +261,11 @@ class AppKernel extends Kernel
             ->addTag('controller.service_arguments')
             ->setPublic(true); // Checking if needed...
 
+        $c->autowire(EngineAsArgumentFrameworkController::class)
+            ->setAutoconfigured(true)
+            ->addTag('controller.service_arguments')
+            ->setPublic(true); // Checking if needed...
+
         // https://github.com/symfony/framework-bundle/blob/current/Resources/config/web.xml
         $c->autowire(RequestAttributeValueResolver::class) // argument_resolver.request_attribute
             ->addTag('controller.argument_value_resolver', array('priority' => 100))->setPublic(false);
