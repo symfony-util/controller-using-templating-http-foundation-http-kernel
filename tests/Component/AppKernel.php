@@ -63,7 +63,7 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         return [
-            new FrameworkBundle(),
+            // new FrameworkBundle(),
         ];
     }
 
@@ -256,15 +256,17 @@ class AppKernel extends Kernel
         //Controllers
         $c->autowire(ServiceValueResolver::class) // argument_resolver.service
             ->addTag('controller.argument_value_resolver', array('priority' => -50))->setPublic(false);
+        // https://symfony.com/doc/current/controller/argument_value_resolver.html
+        // http://api.symfony.com/3.3/Symfony/Component/HttpKernel/Controller/ArgumentResolver/ServiceValueResolver.html
         $c->autowire(EngineAsArgumentController::class)
             ->setAutoconfigured(true)
             ->addTag('controller.service_arguments')
             ->setPublic(false);
 
         // Extensions
-        $c->loadFromExtension('framework', [
-            'secret' => 'NotSecret', // What about use $ uuid -v4  or $ uuidgen
-        ]);
+        // $c->loadFromExtension('framework', [
+        //     'secret' => 'NotSecret', // What about use $ uuid -v4  or $ uuidgen
+        // ]);
     }
 }
 
