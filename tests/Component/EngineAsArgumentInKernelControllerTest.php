@@ -188,8 +188,8 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
 
     private function configureRoutes(RouteCollectionBuilder $routes)
     { // from Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait
-        // $routes->add('/', EngineAsArgumentController::class, 'index'); // .'::__invoke'
-        $routes->add('/', EngineAsArgumentFrameworkController::class, 'index'); // .'::__invoke'
+        $routes->add('/', EngineAsArgumentController::class, 'index'); // .'::__invoke'
+        // $routes->add('/', EngineAsArgumentFrameworkController::class, 'index'); // .'::__invoke'
         //^ It should be tested if the actually used controller resolver can resolve this!
         //^ Returns Symfony/Component/Routing/Route .
     }
