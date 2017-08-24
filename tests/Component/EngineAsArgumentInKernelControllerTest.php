@@ -147,7 +147,8 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
             'Symfony\Component\HttpFoundation\Response',
             (new HttpKernel(
                 $dispatcher,
-                new ContainerControllerResolver($this->container()),
+                // new ContainerControllerResolver($this->container()),
+                new ControllerResolver($this->container()),
                 $requestStack,
                 new ArgumentResolver()
             ))->handle(Request::create('/', 'GET'))
