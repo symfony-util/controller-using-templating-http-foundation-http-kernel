@@ -1,11 +1,11 @@
 ---
 sudo: false
-language: php
-
 cache:
   directories:
     - $HOME/.composer/cache/files
 
+language: php
+env: # Important!
 matrix:
   fast_finish: true
   include:
