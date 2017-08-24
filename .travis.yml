@@ -2,15 +2,6 @@
 sudo: false
 language: php
 
-php:
-  except:
-    - 5.4
-    - 5.5
-    - 5.6
-    - 7.0
-    - 7.2
-    - nightly
-
 cache:
   directories:
     - $HOME/.composer/cache/files
@@ -57,6 +48,13 @@ matrix:
     - php: 5.5 # needs older phpunit
     - php: 7.2
     - php: nightly
+  exclude: # To use less CPU during debug
+    - 5.4
+    - 5.5
+    - 5.6
+    - 7.0
+    - 7.2
+    - nightly
 
 before_install:
   - echo $PHPUNIT
