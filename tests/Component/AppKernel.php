@@ -225,7 +225,6 @@ class AppKernel extends Kernel
         // $c->addCompilerPass(new AddConsoleCommandPass()); // Depnedency need!
         $c->addCompilerPass(new AddCacheWarmerPass());
         $c->addCompilerPass(new AddCacheClearerPass());
-        $c->addCompilerPass(new ControllerArgumentValueResolverPass());
 
         $c->autowire(TemplateNameParser::class)
             ->setAutoconfigured(true)
@@ -258,10 +257,12 @@ class AppKernel extends Kernel
             ->addTag('controller.argument_value_resolver', array('priority' => -50))->setPublic(false);
         // https://symfony.com/doc/current/controller/argument_value_resolver.html
         // http://api.symfony.com/3.3/Symfony/Component/HttpKernel/Controller/ArgumentResolver/ServiceValueResolver.html
+        // https://symfony.com/doc/current/service_container/tags.html
         $c->autowire(EngineAsArgumentController::class)
             ->setAutoconfigured(true)
             ->addTag('controller.service_arguments')
             ->setPublic(false);
+        $c->addCompilerPass(new ControllerArgumentValueResolverPass());
 
         // Extensions
         // $c->loadFromExtension('framework', [
