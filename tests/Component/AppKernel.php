@@ -43,6 +43,7 @@ use Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolve
 use Symfony\Component\HttpKernel\Controller\ArgumentResolver\SessionValueResolver;
 use Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactory;
+use Symfony\Component\HttpKernel\DependencyInjection\RegisterControllerArgumentLocatorsPass;
 use Symfony\Component\HttpKernel\EventListener\RouterListener;
 use Symfony\Component\HttpKernel\HttpKernel;
 use Symfony\Component\HttpKernel\Kernel; // Manages an environment made of bundles. HttpKernel is needed in addition!
@@ -290,6 +291,7 @@ class AppKernel extends Kernel
         $c->addCompilerPass(new AddCacheWarmerPass());
         $c->addCompilerPass(new AddCacheClearerPass());
         $c->addCompilerPass(new ControllerArgumentValueResolverPass());
+        $c->addCompilerPass(new RegisterControllerArgumentLocatorsPass());
 
         // Extensions
         // $c->loadFromExtension('framework', [
