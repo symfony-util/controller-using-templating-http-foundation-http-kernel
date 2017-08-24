@@ -71,6 +71,15 @@ class AppKernel extends Kernel
         $routes->add('/', EngineAsArgumentController::class, 'index');
     }
 
+    public function registerContainerConfiguration(LoaderInterface $loader)
+    {
+        $loader->load(function (ContainerBuilder $container) use ($loader) {
+            $this->configureContainer($container, $loader);
+
+            $container->addObjectResource($this); ////////////// TODO understand and consider necessity.
+        });
+    }
+
     protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader)
     {
         // https://symfony.com/doc/current/service_container.html
