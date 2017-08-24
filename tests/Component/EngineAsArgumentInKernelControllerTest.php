@@ -99,8 +99,8 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
             new ControllerResolver(),
             $requestStack,
             new ArgumentResolver() // OK
-        // ))->handle(Request::create('/', 'GET'))
-        ))->handle(new Request())
+        // ))->handle(Request::create('/', 'GET'));
+        ))->handle(new Request());
 
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertContains('Hello Fabien', $response->getContent());
