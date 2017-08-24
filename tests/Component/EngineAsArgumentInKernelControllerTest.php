@@ -63,6 +63,39 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
         );
     }
 
+    public function testControllerResponse()
+    {
+        $matcher = $this->createMock(Routing\Matcher\UrlMatcherInterface::class);
+        // use getMock() on PHPUnit 5.3 or below
+        // $matcher = $this->getMock(Routing\Matcher\UrlMatcherInterface::class);
+
+        $matcher
+            ->expects($this->once())
+            ->method('match')
+            ->will($this->returnValue(array(
+                '_route' => 'foo',
+                'name' => 'Fabien',
+                '_controller' => function ($name) {
+                    return new Response('Hello '.$name);
+                }
+            )))
+        ;
+        $matcher
+            ->expects($this->once())
+            ->method('getContext')
+            ->will($this->returnValue($this->createMock(Routing\RequestContext::class)))
+        ;
+        $controllerResolver = new ControllerResolver();
+        $argumentResolver = new ArgumentResolver();
+
+        $framework = new Framework($matcher, $controllerResolver, $argumentResolver);
+
+        $response = $framework->handle(new Request());
+
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertContains('Hello Fabien', $response->getContent());
+    }
+
     public function testContainerCanBeCreated()
     {
         $this->assertInstanceOf(
@@ -81,8 +114,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
         );
     }
 
-    /*
-    public function testComponentReturnsResponse()
+    public function ComponentReturnsResponse() // Not yet a test!
     {
         $requestStack = new RequestStack();
         $dispatcher = new EventDispatcher();
@@ -107,7 +139,6 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
             ))->handle(Request::create('/', 'GET'))
         );
     }
-    */
 
     private function configureRoutes(RouteCollectionBuilder $routes)
     { // from Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait
@@ -120,6 +151,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
     { // from Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait
         $routes = new RouteCollectionBuilder($loader);
         $this->configureRoutes($routes);
+
         return $routes->build();
     }
 
