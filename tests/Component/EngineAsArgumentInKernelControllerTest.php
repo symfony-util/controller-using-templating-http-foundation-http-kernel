@@ -73,13 +73,13 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
         $matcher
             ->expects($this->once())
             ->method('match')
-            ->will($this->returnValue(array(
+            ->will($this->returnValue([
                 '_route' => 'foo',
                 'name' => 'Fabien',
                 '_controller' => function ($name) {
                     return new Response('Hello '.$name);
                 }
-            )))
+            ]))
         ;
         $matcher
             ->expects($this->once())
@@ -103,7 +103,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
         // ))->handle(Request::create('/', 'GET'));
         ))->handle(new Request());
 
-        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertSame(200, $response->getStatusCode());
         $this->assertContains('Hello Fabien', $response->getContent());
     }
 
@@ -137,7 +137,6 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
             $requestStack
         ));
         $dispatcher->addSubscriber(new ResponseListener('UTF-8'));
-
 
         $this->assertInstanceOf(
             // Response::class, // 5.4 < php
