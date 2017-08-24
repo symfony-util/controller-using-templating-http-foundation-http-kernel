@@ -9,6 +9,13 @@ php: 7.1
 # env: # Important!
 matrix:
   fast_finish: true
+  exclude: # To use less CPU during debug, but remains without effect!
+    - php: 5.5
+    - php: 5.6
+    - php: 7.0
+    - php: 7.2
+    - php: nightly
+    # - php: 5.4
   include:
     # - php: 5.4 # symfony/http-kernel v3.3.6 requires php >=5.5.9 -> your PHP version (5.4.45) does not satisfy that requirement.
     - php: 5.5
@@ -49,13 +56,6 @@ matrix:
     - php: 5.5 # needs older phpunit
     - php: 7.2
     - php: nightly
-  exclude: # To use less CPU during debug, but remains without effect!
-    - php: 5.5
-    - php: 5.6
-    - php: 7.0
-    - php: 7.2
-    - php: nightly
-    # - php: 5.4
 
 before_install:
   - echo $PHPUNIT
