@@ -36,6 +36,7 @@ use Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher;
 use Symfony\Component\EventDispatcher\DependencyInjection\RegisterListenersPass;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Controller\ArgumentResolver;
+use Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver;
 use Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactory;
 use Symfony\Component\HttpKernel\EventListener\RouterListener;
@@ -246,16 +247,40 @@ class AppKernel extends Kernel
         }
 
         //Controllers
-        $c->autowire(ServiceValueResolver::class) // argument_resolver.service
-            ->setArgument('$container', new Reference('service_container'))
-            ->addTag('controller.argument_value_resolver', array('priority' => -50))->setPublic(false);
-        // https://symfony.com/doc/current/controller/argument_value_resolver.html
-        // http://api.symfony.com/3.3/Symfony/Component/HttpKernel/Controller/ArgumentResolver/ServiceValueResolver.html
-        // https://symfony.com/doc/current/service_container/tags.html
         $c->autowire(EngineAsArgumentController::class)
             ->setAutoconfigured(true)
             ->addTag('controller.service_arguments')
             ->setPublic(false);
+
+        $c->autowire(::class) // 
+            ->setArgument('$container', new Reference('service_container'))
+            ->addTag('controller.argument_value_resolver', array('priority' => ))->setPublic(false);
+
+        $c->autowire(::class) // 
+            ->setArgument('$container', new Reference('service_container'))
+            ->addTag('controller.argument_value_resolver', array('priority' => ))->setPublic(false);
+
+        $c->autowire(Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestAttributeValueResolver::class) // argument_resolver.request_attribute
+            ->setArgument('$container', new Reference('service_container'))
+            ->addTag('controller.argument_value_resolver', array('priority' => 100))->setPublic(false);
+        $c->autowire(Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestValueResolver::class) // argument_resolver.request
+            ->setArgument('$container', new Reference('service_container'))
+            ->addTag('controller.argument_value_resolver', array('priority' => 50))->setPublic(false);
+        $c->autowire(Symfony\Component\HttpKernel\Controller\ArgumentResolver\SessionValueResolver::class) // argument_resolver.session
+            ->setArgument('$container', new Reference('service_container'))
+            ->addTag('controller.argument_value_resolver', array('priority' => 50))->setPublic(false);
+        $c->autowire(ServiceValueResolver::class) // argument_resolver.service
+            ->setArgument('$container', new Reference('service_container'))
+            ->addTag('controller.argument_value_resolver', array('priority' => -50))->setPublic(false);
+        $c->autowire(DefaultValueResolver::class) // argument_resolver.default
+            ->setArgument('$container', new Reference('service_container'))
+            ->addTag('controller.argument_value_resolver', array('priority' => -100))->setPublic(false);
+        $c->autowire(Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver::class) // argument_resolver.variadic
+            ->setArgument('$container', new Reference('service_container'))
+            ->addTag('controller.argument_value_resolver', array('priority' => -150))->setPublic(false);
+        // https://symfony.com/doc/current/controller/argument_value_resolver.html
+        // http://api.symfony.com/3.3/Symfony/Component/HttpKernel/Controller/ArgumentResolver/ServiceValueResolver.html
+        // https://symfony.com/doc/current/service_container/tags.html
 
         $c->addCompilerPass(new RoutingResolverPass());
         $c->addCompilerPass(new RegisterListenersPass(), PassConfig::TYPE_BEFORE_REMOVING);
