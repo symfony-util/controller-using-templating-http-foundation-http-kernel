@@ -84,15 +84,17 @@ class AppKernel extends Kernel
     {
         // https://symfony.com/doc/current/service_container.html
         // HttpKernel has to be added!
-        // TODO: find the right way to configure the service_container!!
+        // TODO: find the right way to configure the service_container!! cheking...
         // It does not replace the framework yet, but this is probably based on a config older than Symfony 3.3
         // TODO: reaorganize in different files by dependecy and use eg. HttpKernel, Matcher, ... allowing for alternatives
 
-        $c->register('service_container')->setSynthetic(true);
-        $c->set('service_container', $c);
-
         $c->register('kernel')->setSynthetic(true);
         $c->set('kernel', $this);
+
+        // $c->register('service_container')->setSynthetic(true);
+        // $c->set('service_container', $c);
+        // https://github.com/symfony/dependency-injection/blob/master/Container.php
+        // Seems to be included by default!
 
         $c->register('event_dispatcher', ContainerAwareEventDispatcher::class) // services.xml
             // TODO: Obsolete use EventDispatcher instead, but may cause other problems
