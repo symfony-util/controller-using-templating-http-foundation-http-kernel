@@ -27,6 +27,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher;
 use Symfony\Component\EventDispatcher\DependencyInjection\RegisterListenersPass;
+use Symfony\Component\HttpKernel\EventListener\RouterListener;
+use Symfony\Component\HttpKernel\HttpKernel;
 use Symfony\Component\HttpKernel\Kernel; // Manages an environment made of bundles. HttpKernel is needed in addition!
 use Symfony\Component\Routing\RouteCollectionBuilder;
 use Symfony\Component\Templating\EngineInterface;
@@ -59,11 +61,12 @@ class AppKernel extends Kernel
         // https://symfony.com/doc/current/service_container.html
         // HttpKernel has to be added!
 
-        $c->register('event_dispatcher',                                ContainerAwareEventDispatcher::class) // services.xml TODO: Obsolete use EventDispatcher instead, but may cause other problems
+        $c->register('event_dispatcher', ContainerAwareEventDispatcher::class) // services.xml
+            // TODO: Obsolete use EventDispatcher instead, but may cause other problems
             ->addArgument(new Reference('service_container'))
         ;
 
-        $c->register('http_kernel',                                HttpKernel::class) // services.xml
+        $c->register('http_kernel', HttpKernel::class) // services.xml
             ->addArgument(new Reference('event_dispatcher'))
             ->addArgument(new Reference('controller_resolver'))
             ->addArgument(new Reference('request_stack'))
