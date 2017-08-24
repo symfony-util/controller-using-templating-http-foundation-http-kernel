@@ -257,7 +257,6 @@ class AppKernel extends Kernel
             ->setPublic(false);
 
         $c->autowire(RequestAttributeValueResolver::class) // argument_resolver.request_attribute
-            ->setArgument('$container', new Reference('service_container'))
             ->addTag('controller.argument_value_resolver', array('priority' => 100))->setPublic(false);
         $c->autowire(RequestValueResolver::class) // argument_resolver.request
             ->setArgument('$container', new Reference('service_container'))
