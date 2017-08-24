@@ -23,18 +23,18 @@ matrix:
 #         - PHPUNIT=phpunit-4.8
 #         - TEST_LINT=`true`
 #         - SENSIO_SECURITY=`true`
-#     - php: 5.6
-#       env:
-#         - PHPUNIT=phpunit-5.7
-#         - TEST_LINT=`true`
-#         - PHP_CS_FIXER=`true`
-#         - SENSIO_SECURITY=`true`
-#     - php: 7.0
-#       env:
-#         - PHPUNIT=phpunit
-#         - TEST_LINT=`true`
-#         - PHP_CS_FIXER=`true`
-#         - SENSIO_SECURITY=`true`
+   - php: 5.6
+     env:
+       - PHPUNIT=phpunit-5.7
+       - TEST_LINT=`true`
+       - PHP_CS_FIXER=`true`
+       - SENSIO_SECURITY=`true`
+   - php: 7.0
+     env:
+       - PHPUNIT=phpunit
+       - TEST_LINT=`true`
+       - PHP_CS_FIXER=`true`
+       - SENSIO_SECURITY=`true`
     - php: 7.1
       env:
         - PHPUNIT=phpunit
