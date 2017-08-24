@@ -4,7 +4,7 @@ cache:
   directories:
     - $HOME/.composer/cache/files
 
-language: php
+language: php: 7.1
 env: # Important!
 matrix:
   fast_finish: true
