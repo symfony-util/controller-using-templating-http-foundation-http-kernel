@@ -246,6 +246,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
             ->setAutoconfigured(true)
             ->setPublic(false);
         $c->setAlias(EngineInterface::class, TwigEngine::class);
+        $c->setAlias('templating', TwigEngine::class); // Read Symfony source code to understand!
 
         // Unit Testing
         // $c->autowire('test.client', Client::class)
