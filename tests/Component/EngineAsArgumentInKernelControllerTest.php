@@ -40,6 +40,7 @@ use Symfony\Component\Templating\TemplateNameParser;
 use Symfony\Component\Templating\TemplateNameParserInterface;
 use SymfonyUtil\Controller\EngineAsArgumentController;
 use Tests\Component\AppKernel;
+use Tests\Component\EngineAsArgumentFrameworkController;
 
 final class EngineAsArgumentInKernelControllerTest extends TestCase
 {
