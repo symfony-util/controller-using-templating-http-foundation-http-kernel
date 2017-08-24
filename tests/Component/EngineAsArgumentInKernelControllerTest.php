@@ -163,19 +163,19 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
             'Symfony\Component\HttpFoundation\Response',
             (new HttpKernel(
                 $dispatcher,
-                // new ContainerControllerResolver($this->container()),
-                new ControllerResolver(),
+                new ContainerControllerResolver($this->container()),
+                // new ControllerResolver(),
                 $requestStack,
                 new ArgumentResolver(
-                new ArgumentMetadataFactory(),
-                [
-                    new RequestAttributeValueResolver(),
-                    new RequestValueResolver(),
-                    new SessionValueResolver(),
-                    new ServiceValueResolver($this->container()),
-                    new DefaultValueResolver(),
-                    new VariadicValueResolver(),
-                ]
+                    new ArgumentMetadataFactory(),
+                    [
+                        new RequestAttributeValueResolver(),
+                        new RequestValueResolver(),
+                        new SessionValueResolver(),
+                        new ServiceValueResolver($this->container()),
+                        new DefaultValueResolver(),
+                        new VariadicValueResolver(),
+                    ]
                 )
             ))->handle(Request::create('/', 'GET'))
         );
