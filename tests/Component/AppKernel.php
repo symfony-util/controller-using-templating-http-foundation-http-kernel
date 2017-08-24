@@ -13,6 +13,8 @@ namespace Tests\Component;
 
 use Symfony\Bridge\Twig\TwigEngine;
 use Symfony\Bundle\FrameworkBundle\Client;
+use Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser;
+use Symfony\Bundle\FrameworkBundle\Controller\ControllerResolver; // Many controller resolver exists!
 use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\AddCacheClearerPass;
 use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\AddCacheWarmerPass;
 // use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\AddConsoleCommandPass;
@@ -30,10 +32,14 @@ use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher;
 use Symfony\Component\EventDispatcher\DependencyInjection\RegisterListenersPass;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpKernel\Controller\ArgumentResolver;
+use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactory;
 use Symfony\Component\HttpKernel\EventListener\RouterListener;
 use Symfony\Component\HttpKernel\HttpKernel;
 use Symfony\Component\HttpKernel\Kernel; // Manages an environment made of bundles. HttpKernel is needed in addition!
 use Symfony\Component\HttpKernel\UriSigner;
+use Symfony\Component\Routing\Generator\Dumper\PhpGeneratorDumper;
+use Symfony\Component\Routing\Generator\UrlGenerator;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\Templating\TemplateNameParser;
@@ -101,13 +107,13 @@ class AppKernel extends Kernel
         $c->register('config_cache_factory', ResourceCheckerConfigCacheFactory::class) // services.xml
             ->addArgument([])
         ;
-        $c->register('controller_name_converter',                                ControllerNameParser::class) // web.xml
+        $c->register('controller_name_converter', ControllerNameParser::class) // web.xml
             ->setPublic(false)
             ->addTag('monolog.logger', ['channel' => 'request'])
             ->addArgument(new Reference('kernel'))
         ;
 
-        $c->register('controller_resolver',                                ControllerResolver::class) // web.xml
+        $c->register('controller_resolver', ControllerResolver::class) // web.xml
 //            ->setPublic(false)
             ->addTag('monolog.logger', ['channel' => 'request'])
             ->addArgument(new Reference('service_container'))
@@ -115,11 +121,11 @@ class AppKernel extends Kernel
             ->addArgument(new Reference('logger', ContainerInterface::IGNORE_ON_INVALID_REFERENCE))
         ;
 
-        $c->register('argument_metadata_factory',                                ArgumentMetadataFactory::class) // web.xml
+        $c->register('argument_metadata_factory', ArgumentMetadataFactory::class) // web.xml
 //            ->setPublic(false)
         ;
 
-        $c->register('argument_resolver',                                ArgumentResolver::class) // web.xml
+        $c->register('argument_resolver', ArgumentResolver::class) // web.xml
 //            ->setPublic(false)
             ->addArgument(new Reference('argument_metadata_factory'))
             ->addArgument([])
