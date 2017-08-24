@@ -251,7 +251,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
         $c->autowire(EngineAsArgumentController::class)
             ->setAutoconfigured(true)
             ->addTag('controller.service_arguments')
-            ->setPublic(false);
+            ->setPublic(true); // Checking if needed...
 
         return $c;
     }
