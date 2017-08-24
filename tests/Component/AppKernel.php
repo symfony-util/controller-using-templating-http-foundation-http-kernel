@@ -20,6 +20,7 @@ use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\ControllerArgume
 use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\RoutingResolverPass;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
+use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -27,9 +28,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher;
 use Symfony\Component\EventDispatcher\DependencyInjection\RegisterListenersPass;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\EventListener\RouterListener;
 use Symfony\Component\HttpKernel\HttpKernel;
 use Symfony\Component\HttpKernel\Kernel; // Manages an environment made of bundles. HttpKernel is needed in addition!
+use Symfony\Component\HttpKernel\UriSigner;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\Templating\TemplateNameParser;
@@ -73,7 +76,7 @@ class AppKernel extends Kernel
             ->addArgument(new Reference('argument_resolver'))
         ;
 
-        $c->register('request_stack',                                RequestStack::class); // services.xml
+        $c->register('request_stack', RequestStack::class); // services.xml
 
 /*
         $c->register('service_container')
@@ -90,7 +93,7 @@ class AppKernel extends Kernel
         ;
         $c->set('kernel', $this);
 
-        $c->register('uri_signer',                                UriSigner::class) // services.xml
+        $c->register('uri_signer', UriSigner::class) // services.xml
             ->addArgument('12345') // app config
         ;
 
