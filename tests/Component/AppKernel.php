@@ -252,14 +252,6 @@ class AppKernel extends Kernel
             ->addTag('controller.service_arguments')
             ->setPublic(false);
 
-        $c->autowire(::class) // 
-            ->setArgument('$container', new Reference('service_container'))
-            ->addTag('controller.argument_value_resolver', array('priority' => ))->setPublic(false);
-
-        $c->autowire(::class) // 
-            ->setArgument('$container', new Reference('service_container'))
-            ->addTag('controller.argument_value_resolver', array('priority' => ))->setPublic(false);
-
         $c->autowire(Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestAttributeValueResolver::class) // argument_resolver.request_attribute
             ->setArgument('$container', new Reference('service_container'))
             ->addTag('controller.argument_value_resolver', array('priority' => 100))->setPublic(false);
