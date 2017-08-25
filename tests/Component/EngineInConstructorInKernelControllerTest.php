@@ -31,7 +31,6 @@ use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\Templating\TemplateNameParser; // != Symfony\Bundle\FrameworkBundle\Templating\TemplateNameParser
-use Symfony\Component\Templating\TemplateNameParserInterface;
 use SymfonyUtil\Controller\EngineInConstructorController;
 use Tests\Component\AppKernel;
 
