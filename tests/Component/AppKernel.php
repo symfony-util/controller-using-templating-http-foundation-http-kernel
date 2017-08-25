@@ -58,7 +58,6 @@ use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\Templating\TemplateNameParser;
 use Symfony\Component\Templating\TemplateNameParserInterface;
 use SymfonyUtil\Controller\EngineAsArgumentController;
-use Tests\Component\EngineAsArgumentFrameworkController;
 
 // use Twig_Environment;
 // use Twig_Loader_Array;
@@ -153,27 +152,27 @@ class AppKernel extends Kernel
             ->addArgument([])
         ;
 
-        $c->setParameter('router.resource',                       'kernel:loadRoutes'); // resource_type: service
-//         $c->setParameter('router.resource',                       new Expression('service("kernel").loadRoutes'));
-//        $c->setParameter('router.resource',                       MicroKernel::class . ':loadRoutes');
-//         $c->setParameter('router.resource',                       new Reference('kernel') . ':loadRoutes');
-//        $c->setParameter('router.resource',                       MicroKernel::loadRoutes);
-//        $c->setParameter('router.resource',                       self::loadRoutes);
-//        $c->setParameter('router.resource',                       parent::loadRoutes);
-//        $c->setParameter('router.resource',                       [new Reference('kernel'), 'loadRoutes']);
-//        $c->setParameter('router.resource',                       ['kernel', 'loadRoutes']);
-//        $c->setParameter('router.resource',                       [MicroKernel::class, 'loadRoutes']);
+        $c->setParameter('router.resource', 'kernel:loadRoutes'); // resource_type: service
+        //         $c->setParameter('router.resource',                       new Expression('service("kernel").loadRoutes'));
+        //        $c->setParameter('router.resource',                       MicroKernel::class . ':loadRoutes');
+        //         $c->setParameter('router.resource',                       new Reference('kernel') . ':loadRoutes');
+        //        $c->setParameter('router.resource',                       MicroKernel::loadRoutes);
+        //        $c->setParameter('router.resource',                       self::loadRoutes);
+        //        $c->setParameter('router.resource',                       parent::loadRoutes);
+        //        $c->setParameter('router.resource',                       [new Reference('kernel'), 'loadRoutes']);
+        //        $c->setParameter('router.resource',                       ['kernel', 'loadRoutes']);
+        //        $c->setParameter('router.resource',                       [MicroKernel::class, 'loadRoutes']);
 
-        $c->setParameter('router.cache_class_prefix',             $c->getParameter('kernel.container_class'));
+        $c->setParameter('router.cache_class_prefix', $c->getParameter('kernel.container_class'));
         // symfony/framework-bundle/DependencyInjection/FrameworkExtension.php
-        $c->setParameter('router.options.generator_class',        UrlGenerator::class); // routing.xml
-        $c->setParameter('router.options.generator_base_class',   UrlGenerator::class); // routing.xml
+        $c->setParameter('router.options.generator_class', UrlGenerator::class); // routing.xml
+        $c->setParameter('router.options.generator_base_class', UrlGenerator::class); // routing.xml
         $c->setParameter('router.options.generator_dumper_class', PhpGeneratorDumper::class); // routing.xml
-        $c->setParameter('router.options.generator.cache_class',  '%router.cache_class_prefix%UrlGenerator'); // routing.xml
-        $c->setParameter('router.options.matcher_class',          RedirectableUrlMatcher::class); // routing.xml
-        $c->setParameter('router.options.matcher_base_class',     RedirectableUrlMatcher::class); // routing.xml
-        $c->setParameter('router.options.matcher_dumper_class',   PhpMatcherDumper::class); // routing.xml
-        $c->setParameter('router.options.matcher.cache_class',    '%router.cache_class_prefix%UrlMatcher'); // routing.xml
+        $c->setParameter('router.options.generator.cache_class', '%router.cache_class_prefix%UrlGenerator'); // routing.xml
+        $c->setParameter('router.options.matcher_class', RedirectableUrlMatcher::class); // routing.xml
+        $c->setParameter('router.options.matcher_base_class', RedirectableUrlMatcher::class); // routing.xml
+        $c->setParameter('router.options.matcher_dumper_class', PhpMatcherDumper::class); // routing.xml
+        $c->setParameter('router.options.matcher.cache_class', '%router.cache_class_prefix%UrlMatcher'); // routing.xml
 
         $c->setParameter('router.request_context.host', 'localhost'); // routing.xml
         $c->setParameter('router.request_context.scheme', 'http'); // routing.xml
@@ -196,24 +195,24 @@ class AppKernel extends Kernel
             ->addArgument(new Reference('controller_name_converter'))
             ->addArgument(new Reference('routing.resolver'))
         ;
-//...
+        //...
         $c->register('router.default', Router::class) // routing.xml
 //            ->setPublic(false)
             ->addTag('monolog.logger', ['channel' => 'router'])
             ->addArgument(new Reference('service_container'))
             ->addArgument('%router.resource%')
             ->addArgument([
-                'cache_dir'              => '%kernel.cache_dir%',
-                'debug'                  => '%kernel.debug%',
-                'generator_class'        => '%router.options.generator_class%',
-                'generator_base_class'   => '%router.options.generator_base_class%',
+                'cache_dir' => '%kernel.cache_dir%',
+                'debug' => '%kernel.debug%',
+                'generator_class' => '%router.options.generator_class%',
+                'generator_base_class' => '%router.options.generator_base_class%',
                 'generator_dumper_class' => '%router.options.generator_dumper_class%',
-                'generator_cache_class'  => '%router.options.generator.cache_class%',
-                'matcher_class'          => '%router.options.matcher_class%',
-                'matcher_base_class'     => '%router.options.matcher_base_class%',
-                'matcher_dumper_class'   => '%router.options.matcher_dumper_class%',
-                'matcher_cache_class'    => '%router.options.matcher.cache_class%',
-                'resource_type'          => 'service', ////////////////////!
+                'generator_cache_class' => '%router.options.generator.cache_class%',
+                'matcher_class' => '%router.options.matcher_class%',
+                'matcher_base_class' => '%router.options.matcher_base_class%',
+                'matcher_dumper_class' => '%router.options.matcher_dumper_class%',
+                'matcher_cache_class' => '%router.options.matcher.cache_class%',
+                'resource_type' => 'service', ////////////////////!
             ])
             ->addArgument(new Reference('router.request_context', ContainerInterface::IGNORE_ON_INVALID_REFERENCE))
             ->addArgument(new Reference('logger', ContainerInterface::IGNORE_ON_INVALID_REFERENCE))
@@ -270,18 +269,18 @@ class AppKernel extends Kernel
 
         // https://github.com/symfony/framework-bundle/blob/current/Resources/config/web.xml
         $c->autowire(RequestAttributeValueResolver::class) // argument_resolver.request_attribute
-            ->addTag('controller.argument_value_resolver', array('priority' => 100))->setPublic(false);
+            ->addTag('controller.argument_value_resolver', ['priority' => 100])->setPublic(false);
         $c->autowire(RequestValueResolver::class) // argument_resolver.request
-            ->addTag('controller.argument_value_resolver', array('priority' => 50))->setPublic(false);
+            ->addTag('controller.argument_value_resolver', ['priority' => 50])->setPublic(false);
         $c->autowire(SessionValueResolver::class) // argument_resolver.session
-            ->addTag('controller.argument_value_resolver', array('priority' => 50))->setPublic(false);
+            ->addTag('controller.argument_value_resolver', ['priority' => 50])->setPublic(false);
         $c->autowire(ServiceValueResolver::class) // argument_resolver.service
             ->setArgument('$container', new Reference('service_container'))
-            ->addTag('controller.argument_value_resolver', array('priority' => -50))->setPublic(false);
+            ->addTag('controller.argument_value_resolver', ['priority' => -50])->setPublic(false);
         $c->autowire(DefaultValueResolver::class) // argument_resolver.default
-            ->addTag('controller.argument_value_resolver', array('priority' => -100))->setPublic(false);
+            ->addTag('controller.argument_value_resolver', ['priority' => -100])->setPublic(false);
         $c->autowire(VariadicValueResolver::class) // argument_resolver.variadic
-            ->addTag('controller.argument_value_resolver', array('priority' => -150))->setPublic(false);
+            ->addTag('controller.argument_value_resolver', ['priority' => -150])->setPublic(false);
         // https://symfony.com/doc/current/controller/argument_value_resolver.html
         // http://api.symfony.com/3.3/Symfony/Component/HttpKernel/Controller/ArgumentResolver/ServiceValueResolver.html
         // https://symfony.com/doc/current/service_container/tags.html
