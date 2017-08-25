@@ -47,7 +47,7 @@ class AppKernel extends Kernel
         $c->autowire(SymfonyUtil\Controller\EngineInConstructorController::class)
             ->setAutoconfigured(true)
             ->addTag('controller.service_arguments')
-            ->setPublic(false);
+            ->setPublic(true);
 
         // Extensions
         $c->loadFromExtension('framework', [
