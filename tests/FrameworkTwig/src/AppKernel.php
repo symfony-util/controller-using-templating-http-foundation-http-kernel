@@ -16,6 +16,8 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
+use SymfonyUtil\Controller\EngineAsArgumentController;
+use SymfonyUtil\Controller\EngineInConstructorController;
 
 class AppKernel extends Kernel
 {
@@ -31,20 +33,20 @@ class AppKernel extends Kernel
 
     protected function configureRoutes(RouteCollectionBuilder $routes)
     {
-        $routes->add('/', SymfonyUtil\Controller\EngineAsArgumentController::class, 'index');
-        $routes->add('/argument', SymfonyUtil\Controller\EngineAsArgumentController::class, 'argument');
-        $routes->add('/constructor', SymfonyUtil\Controller\EngineInConstructorController::class, 'constructor');
+        $routes->add('/', EngineAsArgumentController::class, 'index');
+        $routes->add('/argument', EngineAsArgumentController::class, 'argument');
+        $routes->add('/constructor', EngineInConstructorController::class, 'constructor');
     }
 
     protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader)
     {
         //Controllers
-        $c->autowire(SymfonyUtil\Controller\EngineAsArgumentController::class)
+        $c->autowire(EngineAsArgumentController::class)
             ->setAutoconfigured(true)
             ->addTag('controller.service_arguments')
             ->setPublic(true);
 
-        $c->autowire(SymfonyUtil\Controller\EngineInConstructorController::class)
+        $c->autowire(EngineInConstructorController::class)
             ->setAutoconfigured(true)
             ->addTag('controller.service_arguments')
             ->setPublic(true);
