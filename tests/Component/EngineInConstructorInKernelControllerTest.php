@@ -204,6 +204,8 @@ final class EngineInConstructorInKernelControllerTest extends TestCase
         $c->setAlias(Twig\Environment::class, Twig_Environment::class);
 
         $c->autowire(TwigEngine::class)
+            ->setArgument('$environment', new Twig_Environment(new Twig_Loader_Array(['index.html.twig' => 'Hello Component!'])))
+            ->setArgument('$parser', new TemplateNameParser())
             ->setAutoconfigured(true)
             ->setPublic(false);
         $c->setAlias(EngineInterface::class, TwigEngine::class);
