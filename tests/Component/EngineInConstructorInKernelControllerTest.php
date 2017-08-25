@@ -41,6 +41,7 @@ use Symfony\Component\Templating\TemplateNameParser;
 use Symfony\Component\Templating\TemplateNameParserInterface;
 use SymfonyUtil\Controller\EngineInConstructorController;
 use Tests\Component\AppKernel;
+
 // use Tests\Component\EngineAsArgumentFrameworkController;
 
 final class EngineInConstructorInKernelControllerTest extends TestCase
@@ -86,9 +87,10 @@ final class EngineInConstructorInKernelControllerTest extends TestCase
             ->will($this->returnValue([
                 '_route' => 'foo',
                 'name' => 'Fabien',
-                '_controller' => function ($name) {
-                    return new Response('Hello '.$name);
-                },
+                // '_controller' => function ($name) {
+                //     return new Response('Hello '.$name);
+                // },
+                '_controller' => EngineInConstructorController::class,
             ]))
         ;
         $matcher
@@ -173,15 +175,15 @@ final class EngineInConstructorInKernelControllerTest extends TestCase
                 // new ControllerResolver(),
                 $requestStack,
                 new ArgumentResolver(
-                    new ArgumentMetadataFactory(),
-                    [
-                        new RequestAttributeValueResolver(),
-                        new RequestValueResolver(),
-                        new SessionValueResolver(),
-                        new ServiceValueResolver($c),
-                        new DefaultValueResolver(),
-                        new VariadicValueResolver(),
-                    ]
+                    // new ArgumentMetadataFactory(),
+                    // [
+                    //     new RequestAttributeValueResolver(),
+                    //     new RequestValueResolver(),
+                    //     new SessionValueResolver(),
+                    //     new ServiceValueResolver($c),
+                    //     new DefaultValueResolver(),
+                    //     new VariadicValueResolver(),
+                    // ]
                 )
             ))->handle(Request::create('/', 'GET'))
         );
