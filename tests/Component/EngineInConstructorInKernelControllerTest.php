@@ -21,15 +21,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Controller\ArgumentResolver;
-use Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver;
-use Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestAttributeValueResolver;
-use Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestValueResolver;
-use Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver;
-use Symfony\Component\HttpKernel\Controller\ArgumentResolver\SessionValueResolver;
-use Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver;
 use Symfony\Component\HttpKernel\Controller\ContainerControllerResolver;
-use Symfony\Component\HttpKernel\Controller\ControllerResolver;
-use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactory;
 use Symfony\Component\HttpKernel\EventListener\ResponseListener;
 use Symfony\Component\HttpKernel\EventListener\RouterListener;
 use Symfony\Component\HttpKernel\HttpKernel;
@@ -99,7 +91,7 @@ final class EngineInConstructorInKernelControllerTest extends TestCase
         $c->compile();
         $requestStack = new RequestStack();
         $dispatcher = new EventDispatcher();
-        $dispatcher->addSubscriber(new RouterListener($matcher,$requestStack)); // Returns nothing.
+        $dispatcher->addSubscriber(new RouterListener($matcher, $requestStack)); // Returns nothing.
         $dispatcher->addSubscriber(new ResponseListener('UTF-8'));
         $response = (new HttpKernel(
             $dispatcher,
