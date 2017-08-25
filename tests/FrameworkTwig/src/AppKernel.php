@@ -32,12 +32,19 @@ class AppKernel extends Kernel
     protected function configureRoutes(RouteCollectionBuilder $routes)
     {
         $routes->add('/', SymfonyUtil\Controller\EngineAsArgumentController::class, 'index');
+        $routes->add('/argument', SymfonyUtil\Controller\EngineAsArgumentController::class, 'argument');
+        $routes->add('/constructor', SymfonyUtil\Controller\EngineInConstructorController::class, 'constructor');
     }
 
     protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader)
     {
         //Controllers
         $c->autowire(SymfonyUtil\Controller\EngineAsArgumentController::class)
+            ->setAutoconfigured(true)
+            ->addTag('controller.service_arguments')
+            ->setPublic(false);
+
+        $c->autowire(SymfonyUtil\Controller\EngineInConstructorController::class)
             ->setAutoconfigured(true)
             ->addTag('controller.service_arguments')
             ->setPublic(false);
