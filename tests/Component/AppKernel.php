@@ -58,6 +58,7 @@ use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\Templating\TemplateNameParser;
 use Symfony\Component\Templating\TemplateNameParserInterface;
 use SymfonyUtil\Controller\EngineAsArgumentController;
+use SymfonyUtil\Controller\EngineInConstructorController;
 
 // use Twig_Environment;
 // use Twig_Loader_Array;
@@ -77,6 +78,8 @@ class AppKernel extends Kernel
     protected function configureRoutes(RouteCollectionBuilder $routes)
     {
         $routes->add('/', EngineAsArgumentController::class, 'index');
+        $routes->add('/argument', EngineAsArgumentController::class, 'argument');
+        $routes->add('/constructor', EngineInConstructorController::class, 'constructor');
         // $routes->add('/', EngineAsArgumentFrameworkController::class, 'index');
     }
 
@@ -260,12 +263,17 @@ class AppKernel extends Kernel
         $c->autowire(EngineAsArgumentController::class)
             ->setAutoconfigured(true)
             ->addTag('controller.service_arguments')
-            ->setPublic(true); // Checking if needed...
+            ->setPublic(true);
+
+        $c->autowire(EngineInConstructorController::class)
+            ->setAutoconfigured(true)
+            ->addTag('controller.service_arguments')
+            ->setPublic(true);
 
         $c->autowire(EngineAsArgumentFrameworkController::class)
             ->setAutoconfigured(true)
             ->addTag('controller.service_arguments')
-            ->setPublic(true); // Checking if needed...
+            ->setPublic(true);
 
         // https://github.com/symfony/framework-bundle/blob/current/Resources/config/web.xml
         $c->autowire(RequestAttributeValueResolver::class) // argument_resolver.request_attribute
