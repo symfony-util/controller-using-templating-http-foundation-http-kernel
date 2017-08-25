@@ -30,8 +30,6 @@ use Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolv
 use Symfony\Component\HttpKernel\Controller\ContainerControllerResolver;
 use Symfony\Component\HttpKernel\Controller\ControllerResolver;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactory;
-use Symfony\Component\HttpKernel\DependencyInjection\ControllerArgumentValueResolverPass;
-use Symfony\Component\HttpKernel\DependencyInjection\RegisterControllerArgumentLocatorsPass;
 use Symfony\Component\HttpKernel\EventListener\ResponseListener;
 use Symfony\Component\HttpKernel\EventListener\RouterListener;
 use Symfony\Component\HttpKernel\HttpKernel;
@@ -44,8 +42,6 @@ use Symfony\Component\Templating\TemplateNameParser;
 use Symfony\Component\Templating\TemplateNameParserInterface;
 use SymfonyUtil\Controller\EngineInConstructorController;
 use Tests\Component\AppKernel;
-
-// use Tests\Component\EngineAsArgumentFrameworkController;
 
 final class EngineInConstructorInKernelControllerTest extends TestCase
 {
@@ -90,9 +86,6 @@ final class EngineInConstructorInKernelControllerTest extends TestCase
             ->will($this->returnValue([
                 '_route' => 'foo',
                 'name' => 'Fabien',
-                // '_controller' => function ($name) {
-                //     return new Response('Hello '.$name);
-                // },
                 '_controller' => EngineInConstructorController::class,
             ]))
         ;
@@ -106,29 +99,14 @@ final class EngineInConstructorInKernelControllerTest extends TestCase
         $c->compile();
         $requestStack = new RequestStack();
         $dispatcher = new EventDispatcher();
-        $dispatcher->addSubscriber(new RouterListener(
-            $matcher,
-            $requestStack
-        )); // Returns nothing.
+        $dispatcher->addSubscriber(new RouterListener($matcher,$requestStack)); // Returns nothing.
         $dispatcher->addSubscriber(new ResponseListener('UTF-8'));
         $response = (new HttpKernel(
             $dispatcher,
             new ContainerControllerResolver($c),
-            // new ControllerResolver(),
             $requestStack,
-            new ArgumentResolver(
-                // new ArgumentMetadataFactory(),
-                // [
-                //     new RequestAttributeValueResolver(),
-                //     new RequestValueResolver(),
-                //     new SessionValueResolver(),
-                //     new ServiceValueResolver($c),
-                //     new DefaultValueResolver(),
-                //     new VariadicValueResolver(),
-                // ]
-            )
-        // ))->handle(Request::create('/', 'GET'));
-        ))->handle(new Request());
+            new ArgumentResolver()
+        ))->handle(new Request()); // Mock will inject the controller.
 
         $this->assertSame(200, $response->getStatusCode());
         $this->assertContains('Hello Component!', $response->getContent());
@@ -201,7 +179,6 @@ final class EngineInConstructorInKernelControllerTest extends TestCase
             },
             'index'
         );
-        //^ It should be tested if the actually used controller resolver can resolve this!
         //^ Returns Symfony/Component/Routing/Route .
     }
 
