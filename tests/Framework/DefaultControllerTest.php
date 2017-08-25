@@ -26,4 +26,32 @@ class DefaultControllerTest extends WebTestCase
 
         $this->assertContains('Hello Component!', $client->getResponse()->getContent());
     }
+
+    public function testArgument()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/argument');
+
+        $this->assertSame(
+            200, // or Symfony\Component\HttpFoundation\Response::HTTP_OK,
+            $client->getResponse()->getStatusCode()
+        );
+
+        $this->assertContains('Hello Component!', $client->getResponse()->getContent());
+    }
+
+    public function testConstructor()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/constructor');
+
+        $this->assertSame(
+            200, // or Symfony\Component\HttpFoundation\Response::HTTP_OK,
+            $client->getResponse()->getStatusCode()
+        );
+
+        $this->assertContains('Hello Component!', $client->getResponse()->getContent());
+    }
 }
