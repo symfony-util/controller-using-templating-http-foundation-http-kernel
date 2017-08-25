@@ -30,7 +30,7 @@ use Symfony\Component\Routing\Matcher\UrlMatcherInterface;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 use Symfony\Component\Templating\EngineInterface;
-use Symfony\Component\Templating\TemplateNameParser;
+use Symfony\Component\Templating\TemplateNameParser; // != Symfony\Bundle\FrameworkBundle\Templating\TemplateNameParser
 use Symfony\Component\Templating\TemplateNameParserInterface;
 use SymfonyUtil\Controller\EngineInConstructorController;
 use Tests\Component\AppKernel;
@@ -185,27 +185,10 @@ final class EngineInConstructorInKernelControllerTest extends TestCase
     private function container()
     {
         $c = new ContainerBuilder();
-        // https://symfony.com/doc/current/service_container.html
 
-        $c->autowire(TemplateNameParser::class)
-            ->setAutoconfigured(true)
-            ->setPublic(false);
-        $c->setAlias(TemplateNameParserInterface::class, TemplateNameParser::class);
-
-        $c->autowire(Twig_Loader_Array::class, Twig_Loader_Array::class)
-            ->setArgument('$templates', ['index.html.twig' => 'Hello Component!'])
-            ->setAutoconfigured(true)
-            ->setPublic(false);
-        $c->setAlias(Twig_LoaderInterface::class, Twig_Loader_Array::class);
-
-        $c->autowire(Twig_Environment::class, Twig_Environment::class)
-            ->setAutoconfigured(true)
-            ->setPublic(false);
-        $c->setAlias(Twig\Environment::class, Twig_Environment::class);
-
-        $c->autowire(TwigEngine::class)
+        $c->autowire(TwigEngine::class) // From Bridge or Bundle
             ->setArgument('$environment', new Twig_Environment(new Twig_Loader_Array(['index.html.twig' => 'Hello Component!'])))
-            ->setArgument('$parser', new TemplateNameParser())
+            ->setArgument('$parser', new TemplateNameParser()) // From Templating or Framework
             ->setAutoconfigured(true)
             ->setPublic(false);
         $c->setAlias(EngineInterface::class, TwigEngine::class);
