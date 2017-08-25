@@ -82,7 +82,7 @@ class AppKernel extends Kernel
         $c->autowire(EngineInConstructorController::class)
             ->setAutoconfigured(true)
             ->addTag('controller.service_arguments')
-            ->setPublic(false);
+            ->setPublic(true);
 
         // Extensions
         $c->loadFromExtension('framework', [
