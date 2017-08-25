@@ -128,7 +128,7 @@ final class EngineInConstructorInKernelControllerTest extends TestCase
         ))->handle(new Request());
 
         $this->assertSame(200, $response->getStatusCode());
-        $this->assertContains('Hello Fabien', $response->getContent());
+        $this->assertContains('Hello Component!', $response->getContent());
     }
 
     public function testContainerCanBeCreated()
@@ -172,19 +172,8 @@ final class EngineInConstructorInKernelControllerTest extends TestCase
             (new HttpKernel(
                 $dispatcher,
                 new ContainerControllerResolver($c),
-                // new ControllerResolver(),
                 $requestStack,
-                new ArgumentResolver(
-                    // new ArgumentMetadataFactory(),
-                    // [
-                    //     new RequestAttributeValueResolver(),
-                    //     new RequestValueResolver(),
-                    //     new SessionValueResolver(),
-                    //     new ServiceValueResolver($c),
-                    //     new DefaultValueResolver(),
-                    //     new VariadicValueResolver(),
-                    // ]
-                )
+                new ArgumentResolver()
             ))->handle(Request::create('/', 'GET'))
         );
     }
@@ -192,9 +181,6 @@ final class EngineInConstructorInKernelControllerTest extends TestCase
     private function configureRoutes(RouteCollectionBuilder $routes)
     { // from Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait
         $routes->add('/', EngineInConstructorController::class, 'index'); // .'::__invoke'
-        // $routes->add('/', EngineAsArgumentFrameworkController::class, 'index'); // .'::__invoke'
-        //^ It should be tested if the actually used controller resolver can resolve this!
-        //^ Returns Symfony/Component/Routing/Route .
     }
 
     private function loadRoutes(LoaderInterface $loader = null)
@@ -251,7 +237,7 @@ final class EngineInConstructorInKernelControllerTest extends TestCase
             ->setAutoconfigured(true)
             ->setPublic(false);
         $c->setAlias(EngineInterface::class, TwigEngine::class);
-        $c->setAlias('templating', TwigEngine::class); // Read Symfony source code to understand!
+        // $c->setAlias('templating', TwigEngine::class); // Read Symfony source code to understand! (May allow 
 
         // Unit Testing
         // $c->autowire('test.client', Client::class)
@@ -263,8 +249,8 @@ final class EngineInConstructorInKernelControllerTest extends TestCase
             ->addTag('controller.service_arguments')
             ->setPublic(true); // Checking if needed...
 
-        $c->addCompilerPass(new ControllerArgumentValueResolverPass());
-        $c->addCompilerPass(new RegisterControllerArgumentLocatorsPass());
+        // $c->addCompilerPass(new ControllerArgumentValueResolverPass());
+        // $c->addCompilerPass(new RegisterControllerArgumentLocatorsPass());
 
         return $c;
     }
