@@ -28,6 +28,8 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
     {
         return [
             ['/'],
+            ['/argument'],
+            ['/constructor'],
         ];
     }
 }
