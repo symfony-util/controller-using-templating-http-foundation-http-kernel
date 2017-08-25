@@ -21,6 +21,7 @@ use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\Templating\TemplateNameParser;
 use Symfony\Component\Templating\TemplateNameParserInterface;
 use SymfonyUtil\Controller\EngineAsArgumentController;
+use SymfonyUtil\Controller\EngineInConstructorController;
 
 // use Twig_Environment;
 // use Twig_Loader_Array;
@@ -39,6 +40,8 @@ class AppKernel extends Kernel
     protected function configureRoutes(RouteCollectionBuilder $routes)
     {
         $routes->add('/', EngineAsArgumentController::class, 'index');
+        $routes->add('/argument', EngineAsArgumentController::class, 'argument');
+        $routes->add('/constructor', EngineInConstructorController::class, 'constructor');
     }
 
     protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader)
@@ -72,6 +75,11 @@ class AppKernel extends Kernel
 
         //Controllers
         $c->autowire(EngineAsArgumentController::class)
+            ->setAutoconfigured(true)
+            ->addTag('controller.service_arguments')
+            ->setPublic(false);
+
+        $c->autowire(EngineInConstructorController::class)
             ->setAutoconfigured(true)
             ->addTag('controller.service_arguments')
             ->setPublic(false);
