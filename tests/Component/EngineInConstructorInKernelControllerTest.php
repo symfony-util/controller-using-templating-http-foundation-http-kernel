@@ -39,11 +39,11 @@ use Symfony\Component\Routing\RouteCollectionBuilder;
 use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\Templating\TemplateNameParser;
 use Symfony\Component\Templating\TemplateNameParserInterface;
-use SymfonyUtil\Controller\EngineAsArgumentController;
+use SymfonyUtil\Controller\EngineInConstructorController;
 use Tests\Component\AppKernel;
-use Tests\Component\EngineAsArgumentFrameworkController;
+// use Tests\Component\EngineAsArgumentFrameworkController;
 
-final class EngineAsArgumentInKernelControllerTest extends TestCase
+final class EngineInConstructorInKernelControllerTest extends TestCase
 {
     public function testCanBeCreated()
     {
@@ -68,7 +68,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
         $this->assertInstanceOf(
             // Response::class, // 5.4 < php
             'Symfony\Component\HttpFoundation\Response',
-            (new AppKernel('dev', true))->handle(Request::create('/', 'GET'))
+            (new AppKernel('dev', true))->handle(Request::create('/constructor', 'GET'))
         );
     }
 
@@ -189,7 +189,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
 
     private function configureRoutes(RouteCollectionBuilder $routes)
     { // from Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait
-        $routes->add('/', EngineAsArgumentController::class, 'index'); // .'::__invoke'
+        $routes->add('/', EngineInConstructorController::class, 'index'); // .'::__invoke'
         // $routes->add('/', EngineAsArgumentFrameworkController::class, 'index'); // .'::__invoke'
         //^ It should be tested if the actually used controller resolver can resolve this!
         //^ Returns Symfony/Component/Routing/Route .
@@ -256,12 +256,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
         //     ->setPublic(true); // Public needed!
 
         //Controllers
-        $c->autowire(EngineAsArgumentController::class)
-            ->setAutoconfigured(true)
-            ->addTag('controller.service_arguments')
-            ->setPublic(true); // Checking if needed...
-
-        $c->autowire(EngineAsArgumentFrameworkController::class)
+        $c->autowire(EngineInConstructorController::class)
             ->setAutoconfigured(true)
             ->addTag('controller.service_arguments')
             ->setPublic(true); // Checking if needed...
