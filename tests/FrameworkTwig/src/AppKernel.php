@@ -54,7 +54,7 @@ class AppKernel extends Kernel
         $routes->add('/constructor', TemplatingController::class, 'constructor');
         $routes->addRoute(new Route('/variadic/request', [
                 '_controller' => VariadicController::class,
-                '_resources' => ['Identity', ['request']],
+                '_resources' => ['\Identity', ['request']],
             ]),
             'variadic_request'
         );
@@ -77,7 +77,7 @@ class AppKernel extends Kernel
             ->setAutoconfigured(true)
             ->setPublic(true);
 
-        $c->autowire('Identity')
+        $c->autowire('\Identity')
             ->setAutoconfigured(true)
             ->setPublic(true);
 
