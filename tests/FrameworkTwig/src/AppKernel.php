@@ -60,6 +60,10 @@ class AppKernel extends Kernel
             // ->addTag('controller.service_arguments')
             ->setPublic(true);
 
+        $c->autowire(VariadicController::class)
+            ->setAutoconfigured(true)
+            ->setPublic(true);
+
         // Extensions
         $c->loadFromExtension('framework', [
             'secret' => 'NotSecret', // What about use $ uuid -v4  or $ uuidgen
