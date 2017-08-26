@@ -77,7 +77,7 @@ class AppKernel extends Kernel
             ->setAutoconfigured(true)
             ->setPublic(true);
 
-        $c->autowire(Identity::class)
+        $c->autowire('Identity')
             ->setAutoconfigured(true)
             ->setPublic(true);
 
