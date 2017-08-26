@@ -19,6 +19,7 @@ use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 use SymfonyUtil\Controller\EngineAsArgumentController;
 use SymfonyUtil\Controller\TemplatingController;
+use SymfonyUtil\Controller\VariadicController;
 
 class AppKernel extends Kernel
 {
@@ -38,6 +39,12 @@ class AppKernel extends Kernel
         $routes->add('/', EngineAsArgumentController::class, 'index');
         $routes->add('/argument', EngineAsArgumentController::class, 'argument');
         $routes->add('/constructor', TemplatingController::class, 'constructor');
+        $routes->addRoute(new Route('/variadic/request', [
+                '_controller' => VariadicController::class,
+                '_resources' => 'request',
+            ]),
+            'variadic_request'
+        );
     }
 
     protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader)
