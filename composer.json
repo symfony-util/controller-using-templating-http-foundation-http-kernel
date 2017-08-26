@@ -30,6 +30,7 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\Component\\": "tests/Component"
+            "Tests\\FrameworkTwig\\": "tests/FrameworkTwig/src"
         }
     },
     "extra": {
