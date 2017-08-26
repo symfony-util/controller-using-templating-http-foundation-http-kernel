@@ -31,7 +31,7 @@ use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\Templating\TemplateNameParser; // != Symfony\Bundle\FrameworkBundle\Templating\TemplateNameParser
-use SymfonyUtil\Controller\EngineInConstructorController;
+use SymfonyUtil\Controller\TemplatingController;
 use Tests\Component\AppKernel;
 
 final class EngineInConstructorInKernelControllerTest extends TestCase
@@ -77,7 +77,7 @@ final class EngineInConstructorInKernelControllerTest extends TestCase
             ->will($this->returnValue([
                 '_route' => 'foo',
                 'name' => 'Fabien',
-                '_controller' => EngineInConstructorController::class,
+                '_controller' => TemplatingController::class,
             ]))
         ;
         $matcher
@@ -150,7 +150,7 @@ final class EngineInConstructorInKernelControllerTest extends TestCase
 
     private function configureRoutes(RouteCollectionBuilder $routes)
     { // from Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait
-        $routes->add('/', EngineInConstructorController::class, 'index');
+        $routes->add('/', TemplatingController::class, 'index');
     }
 
     private function loadRoutes(LoaderInterface $loader = null)
@@ -197,7 +197,7 @@ final class EngineInConstructorInKernelControllerTest extends TestCase
         //     ->setPublic(true); // Public needed!
 
         //Controllers
-        $c->autowire(EngineInConstructorController::class)
+        $c->autowire(TemplatingController::class)
             ->setAutoconfigured(true)
             ->addTag('controller.service_arguments')
             ->setPublic(true);
