@@ -77,6 +77,10 @@ class AppKernel extends Kernel
             ->setAutoconfigured(true)
             ->setPublic(true);
 
+        $c->autowire(Identity::class)
+            ->setAutoconfigured(true)
+            ->setPublic(true);
+
         // Extensions
         $c->loadFromExtension('framework', [
             'secret' => 'NotSecret', // What about use $ uuid -v4  or $ uuidgen
