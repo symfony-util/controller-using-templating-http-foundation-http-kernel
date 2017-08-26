@@ -47,7 +47,7 @@ class AppKernel extends Kernel
         $routes->add('/constructor', TemplatingController::class, 'constructor');
         $routes->addRoute(new Route('/variadic/{id}', [
                 '_controller' => VariadicController::class,
-                '_resources' => [Identity::class, ['$id']],
+                '_resources' => [Identity::class, [8]],
             ]),
             'variadic_request'
         );
