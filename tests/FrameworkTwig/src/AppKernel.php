@@ -24,16 +24,7 @@ use Symfony\Component\Routing\RouteCollectionBuilder;
 use SymfonyUtil\Controller\EngineAsArgumentController;
 use SymfonyUtil\Controller\TemplatingController;
 use SymfonyUtil\Controller\VariadicController;
-
-class Identity
-{
-    public function __invoke($a)
-    {
-        dump($a);
-
-        return $a;
-    }
-}
+use Tests\FrameworkTwig\Identity;
 
 class AppKernel extends Kernel
 {
@@ -56,7 +47,7 @@ class AppKernel extends Kernel
         $routes->add('/constructor', TemplatingController::class, 'constructor');
         $routes->addRoute(new Route('/variadic/request', [
                 '_controller' => VariadicController::class,
-                '_resources' => ['\Identity', ['request']],
+                '_resources' => [Identity::class, ['request']],
             ]),
             'variadic_request'
         );
@@ -79,7 +70,7 @@ class AppKernel extends Kernel
             ->setAutoconfigured(true)
             ->setPublic(true);
 
-        $c->autowire('\Identity')
+        $c->autowire(Identity::class)
             ->setAutoconfigured(true)
             ->setPublic(true);
 
