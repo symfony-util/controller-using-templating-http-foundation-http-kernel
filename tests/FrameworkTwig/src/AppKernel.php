@@ -36,7 +36,7 @@ class AppKernel extends Kernel
             new FrameworkBundle(),
             new ResourceResolverBundle(),
             new TwigBundle(),
-            new WebServerBundle()
+            new WebServerBundle(),
         ];
     }
 
