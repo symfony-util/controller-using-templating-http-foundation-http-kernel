@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Tests\FrameworkTwig
+namespace Tests\FrameworkTwig;
 
 use Knp\Rad\ResourceResolver\Bundle\ResourceResolverBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
