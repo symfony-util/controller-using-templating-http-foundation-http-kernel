@@ -54,4 +54,18 @@ class DefaultControllerTest extends WebTestCase
 
         $this->assertContains('Hello World!', $client->getResponse()->getContent());
     }
+
+    public function testVariadic()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/variadic/request');
+
+        $this->assertSame(
+            200, // or Symfony\Component\HttpFoundation\Response::HTTP_OK,
+            $client->getResponse()->getStatusCode()
+        );
+
+        $this->assertContains('Hello World!', $client->getResponse()->getContent());
+    }
 }
