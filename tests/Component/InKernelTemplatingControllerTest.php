@@ -34,7 +34,7 @@ use Symfony\Component\Templating\TemplateNameParser; // != Symfony\Bundle\Framew
 use SymfonyUtil\Controller\TemplatingController;
 use Tests\Component\AppKernel;
 
-final class EngineInConstructorInKernelControllerTest extends TestCase
+final class InKernelTemplatingControllerTest extends TestCase
 {
     public function testCanBeCreated()
     {
