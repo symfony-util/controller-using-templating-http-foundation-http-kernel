@@ -9,6 +9,7 @@
  * file that was distributed with this source code.
  */
 
+use Knp\Rad\ResourceResolver\Bundle\ResourceResolverBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Bundle\TwigBundle\TwigBundle;
@@ -27,6 +28,7 @@ class AppKernel extends Kernel
     {
         return [
             new FrameworkBundle(),
+            new ResourceResolverBundle(),
             new TwigBundle(),
         ];
     }
