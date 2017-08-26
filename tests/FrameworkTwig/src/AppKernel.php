@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 use SymfonyUtil\Controller\EngineAsArgumentController;
-use SymfonyUtil\Controller\EngineInConstructorController;
+use SymfonyUtil\Controller\TemplatingController;
 
 class AppKernel extends Kernel
 {
@@ -35,7 +35,7 @@ class AppKernel extends Kernel
     {
         $routes->add('/', EngineAsArgumentController::class, 'index');
         $routes->add('/argument', EngineAsArgumentController::class, 'argument');
-        $routes->add('/constructor', EngineInConstructorController::class, 'constructor');
+        $routes->add('/constructor', TemplatingController::class, 'constructor');
     }
 
     protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader)
@@ -46,7 +46,7 @@ class AppKernel extends Kernel
             ->addTag('controller.service_arguments')
             ->setPublic(true);
 
-        $c->autowire(EngineInConstructorController::class)
+        $c->autowire(TemplatingController::class)
             ->setAutoconfigured(true)
             ->addTag('controller.service_arguments')
             ->setPublic(true);
