@@ -22,6 +22,16 @@ use SymfonyUtil\Controller\EngineAsArgumentController;
 use SymfonyUtil\Controller\TemplatingController;
 use SymfonyUtil\Controller\VariadicController;
 
+class Identity
+{
+    public function __invoke($a)
+    {
+        dump($a);
+
+        return $a;
+    }
+}
+
 class AppKernel extends Kernel
 {
     use MicroKernelTrait;
@@ -42,7 +52,7 @@ class AppKernel extends Kernel
         $routes->add('/constructor', TemplatingController::class, 'constructor');
         $routes->addRoute(new Route('/variadic/request', [
                 '_controller' => VariadicController::class,
-                '_resources' => 'request',
+                '_resources' => [ Identity::class, ['request']],
             ]),
             'variadic_request'
         );
