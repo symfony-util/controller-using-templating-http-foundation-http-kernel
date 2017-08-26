@@ -267,7 +267,7 @@ class AppKernel extends Kernel
 
         $c->autowire(TemplatingController::class)
             ->setAutoconfigured(true)
-            ->addTag('controller.service_arguments')
+            // ->addTag('controller.service_arguments')
             ->setPublic(true);
 
         $c->autowire(EngineAsArgumentFrameworkController::class)
