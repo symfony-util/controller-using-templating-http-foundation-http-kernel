@@ -48,7 +48,7 @@ class AppKernel extends Kernel
         $routes->addRoute(new Route('/variadic/{id}', [
                 '_controller' => VariadicController::class,
                 '_resources' => [
-                    'arguments' => [Identity::class, [['eight' => '$id', '2' => '$request', '3' => '&request', '5' => 'request']]],
+                    'arguments' => [Identity::class, [['eight' => '$id', '2' => '$request', '3' => '@request', '5' => 'request']]],
                 ],
             ]),
             'variadic_request'
