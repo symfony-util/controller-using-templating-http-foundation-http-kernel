@@ -95,11 +95,11 @@ class AppKernel extends Kernel
 
     public function getCacheDir()
     {
-        return sys_get_temp_dir() . '/' . get_current_user() . parent::getCacheDir();
+        return sys_get_temp_dir().'/'.get_current_user().parent::getCacheDir();
     }
 
     public function getLogDir()
     {
-        return sys_get_temp_dir() . '/' . get_current_user() . parent::getLogDir();
+        return sys_get_temp_dir().'/'.get_current_user().parent::getLogDir();
     }
 }
