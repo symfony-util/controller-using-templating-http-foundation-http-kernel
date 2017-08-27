@@ -80,6 +80,7 @@ install:
   - if [[ -f config/parameters.yml.travis ]]; then cp config/parameters.yml.travis config/parameters.yml; fi
   - composer up --no-progress --no-suggest --optimize-autoloader --apcu-autoloader
   - composer show
+  - env KERNEL_DIR=tests/FrameworkTwig/src php tests/FrameworkTwig/bin/console
 
 before_script:
 
@@ -97,6 +98,10 @@ script:
     #^ This checks that the application doesn't use dependencies with known security vulnerabilities
   - if [[ -v VENDOR_LINT ]]; then for f in $(find ./vendor -name \*.php); do php -l $f > /dev/null; done; fi
     #^ Should be the last line of install but sometimes long to execute and little can be done for errors found.
+  - env KERNEL_DIR=tests/FrameworkTwig/src php tests/FrameworkTwig/bin/console server:start -vvv
+  - w3m http://127.0.0.1:8000/constructor | cat
+  - w3m http://127.0.0.1:8000/argument | cat
+  - w3m http://127.0.0.1:8000/variadic/request | cat
 
 after_success:
     - true || bash <(curl -s https://codecov.io/bash) -s /tmp
