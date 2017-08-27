@@ -15,7 +15,6 @@ class Identity
 {
     public function __invoke($a)
     {
-        dump($a);
         return $a;
     }
 }
