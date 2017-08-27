@@ -107,7 +107,7 @@ script:
   - w3m http://127.0.0.1:8000/argument | cat
   - w3m http://127.0.0.1:8000/variadic/request | cat
   - which ab
-  - if [[ -f /usr/bin/ab ]]; ab -n 100 "http://127.0.0.1:8000/"; fi
+  - if [[ -f /usr/bin/ab ]]; ab -n 100 http://127.0.0.1:8000/ ; fi
   - apt-cache policy apache2
 
 after_success:
