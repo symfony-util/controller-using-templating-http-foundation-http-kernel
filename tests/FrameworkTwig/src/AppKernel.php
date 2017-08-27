@@ -87,4 +87,16 @@ class AppKernel extends Kernel
             'paths' => ['%kernel.project_dir%/tests/templates'],
         ]);
     }
+
+    public function getRootDir() {
+        return getcwd();
+    }
+
+    public function getCacheDir() {
+        return sys_get_temp_dir() . '/' . get_current_user() . parent::getCacheDir();
+    }
+
+    public function getLogDir() {
+        return sys_get_temp_dir() . '/' . get_current_user() . parent::getLogDir();
+    }
 }
