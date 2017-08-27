@@ -106,8 +106,6 @@ script:
   - w3m http://127.0.0.1:8000/constructor | cat
   - w3m http://127.0.0.1:8000/argument | cat
   - w3m http://127.0.0.1:8000/variadic/request | cat
-  - which ab
-  # - if [[ -f /usr/bin/ab ]]; then ab -n 100 http://127.0.0.1:8000/ ; fi
   - ab -n 100 http://127.0.0.1:8000/ || true
   - apt-cache policy apache2
 
