@@ -102,6 +102,7 @@ script:
   - w3m http://127.0.0.1:8000/constructor | cat
   - w3m http://127.0.0.1:8000/argument | cat
   - w3m http://127.0.0.1:8000/variadic/request | cat
+  - ab -n 10 http://127.0.0.1:8000/
 
 after_success:
     - true || bash <(curl -s https://codecov.io/bash) -s /tmp
