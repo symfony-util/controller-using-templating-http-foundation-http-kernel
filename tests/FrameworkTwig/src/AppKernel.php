@@ -88,15 +88,18 @@ class AppKernel extends Kernel
         ]);
     }
 
-    public function getRootDir() {
+    public function getRootDir() // Not sure if any use!
+    {
         return getcwd();
     }
 
-    public function getCacheDir() {
+    public function getCacheDir()
+    {
         return sys_get_temp_dir() . '/' . get_current_user() . parent::getCacheDir();
     }
 
-    public function getLogDir() {
+    public function getLogDir()
+    {
         return sys_get_temp_dir() . '/' . get_current_user() . parent::getLogDir();
     }
 }
