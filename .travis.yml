@@ -1,5 +1,9 @@
 ---
 sudo: false
+addons:
+  apt:
+    packages:
+    - apache2-utils
 cache:
   directories:
     - $HOME/.composer/cache/files
