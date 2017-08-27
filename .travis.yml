@@ -3,7 +3,7 @@ sudo: false
 addons:
   apt:
     packages:
-    - apache2-utils
+    # - apache2-utils # Contains: /usr/bin/ab
 cache:
   directories:
     - $HOME/.composer/cache/files
@@ -106,7 +106,7 @@ script:
   - w3m http://127.0.0.1:8000/constructor | cat
   - w3m http://127.0.0.1:8000/argument | cat
   - w3m http://127.0.0.1:8000/variadic/request | cat
-  - ab -n 10 http://127.0.0.1:8000/
+  - if [[ -f /usr/bin/ab ]]; ab -n 100 http://127.0.0.1:8000/
   - apt-cache policy apache2
 
 after_success:
