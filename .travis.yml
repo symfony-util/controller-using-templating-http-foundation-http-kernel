@@ -80,7 +80,7 @@ install:
   - if [[ -f config/parameters.yml.travis ]]; then cp config/parameters.yml.travis config/parameters.yml; fi
   - composer up --no-progress --no-suggest --optimize-autoloader --apcu-autoloader
   - composer show
-  - env KERNEL_DIR=tests/FrameworkTwig/src php tests/FrameworkTwig/bin/console
+  - env KERNEL_DIR=tests/FrameworkTwig/src php bin/console
 
 before_script:
 
