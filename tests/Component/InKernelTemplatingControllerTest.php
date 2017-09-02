@@ -94,7 +94,7 @@ final class InKernelTemplatingControllerTest extends TestCase
         $dispatcher->addSubscriber(new ResponseListener('UTF-8'));
         $response = (new HttpKernel(
             $dispatcher,
-            new ContainerControllerResolver($c),
+            new ContainerControllerResolver($c), // Psr\Container\ContainerInterface
             $requestStack,
             new ArgumentResolver()
         ))->handle(new Request()); // Mock will inject the controller.
@@ -141,7 +141,7 @@ final class InKernelTemplatingControllerTest extends TestCase
             'Symfony\Component\HttpFoundation\Response',
             (new HttpKernel(
                 $dispatcher,
-                new ContainerControllerResolver($c),
+                new ContainerControllerResolver($c), // Psr\Container\ContainerInterface
                 $requestStack,
                 new ArgumentResolver()
             ))->handle(Request::create('/', 'GET'))
