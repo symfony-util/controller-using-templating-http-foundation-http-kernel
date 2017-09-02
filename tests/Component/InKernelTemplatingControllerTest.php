@@ -96,7 +96,7 @@ final class InKernelTemplatingControllerTest extends TestCase
             $dispatcher,
             new ContainerControllerResolver($c), // Psr\Container\ContainerInterface
             $requestStack,
-            new ArgumentResolver()
+            new ArgumentResolver() // This argument will be optional in Symfony 4.0
         ))->handle(new Request()); // Mock will inject the controller.
 
         $this->assertSame(200, $response->getStatusCode());
@@ -143,7 +143,7 @@ final class InKernelTemplatingControllerTest extends TestCase
                 $dispatcher,
                 new ContainerControllerResolver($c), // Psr\Container\ContainerInterface
                 $requestStack,
-                new ArgumentResolver()
+                new ArgumentResolver() // This argument will be optional in Symfony 4.0
             ))->handle(Request::create('/', 'GET'))
         );
     }
