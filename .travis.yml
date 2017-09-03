@@ -116,6 +116,7 @@ script:
   - ls ~/.phpenv/versions/*/etc/php-fpm.conf.default
   - apt-cache policy apache2 nginx php5-fpm php-fpm
   - which nginx || true
+  - nginx || true
 
 
 after_success:
