@@ -123,6 +123,7 @@ script:
   - ls ~/.phpenv/versions/*/etc/php-fpm.conf.default
   - cat ~/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/php-fpm.conf.default
   - php-fpm --fpm-config ~/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/php-fpm.conf.default
+  - php-fpm --fpm-config ~/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/php-fpm.conf.default --fpm-config .php-fpm.conf
 
 
 after_success:
