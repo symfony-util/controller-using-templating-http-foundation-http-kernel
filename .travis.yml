@@ -113,17 +113,8 @@ script:
   - which php
   - which php-fpm
   - php-fpm --fpm-config .php-fpm.conf
-  - apt-cache policy apache2 nginx php5-fpm php-fpm
-  - ls /etc/php5/fpm/pool.d
-  - find /home -name php
-  - find /home -name fpm
-  - find /home -name pool.d
-  - file /home/travis/.phpenv/versions/*/php/php/fpm
-  - ls /home/travis/.phpenv/versions/*/php/php/fpm
   - ls ~/.phpenv/versions/*/etc/php-fpm.conf.default
-  - cat ~/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/php-fpm.conf.default
-  - php-fpm --fpm-config ~/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/php-fpm.conf.default
-  - php-fpm --fpm-config ~/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/php-fpm.conf.default --fpm-config .php-fpm.conf
+  - apt-cache policy apache2 nginx php5-fpm php-fpm
 
 
 after_success:
