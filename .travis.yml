@@ -64,6 +64,7 @@ matrix:
     - php: nightly
 
 before_install:
+  - php-fpm --version
   - echo $PHPUNIT
   - pwd
   - echo $HOME
@@ -71,6 +72,7 @@ before_install:
   - which composer
   - ls /tmp
   - php --ini
+  - php-fpm --ini
   - xdebug=/home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini
   - if [[ -f $xdebug ]]; then cat $xdebug; cp $xdebug /tmp; phpenv config-rm xdebug.ini; fi
   - xdebug_php=
@@ -111,7 +113,6 @@ script:
   - ab -n 100 http://127.0.0.1:8000/ || true
   - which php
   - which php-fpm
-  - php-fpm --ini
   - apt-cache policy apache2 nginx php5-fpm php-fpm
 
 after_success:
