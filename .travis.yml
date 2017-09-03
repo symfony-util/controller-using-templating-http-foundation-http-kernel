@@ -3,10 +3,10 @@ sudo: false
 addons:
   apt:
     packages:
-    - apache2-utils # Contains: /usr/bin/ab
+    # - apache2-utils # Contains: /usr/bin/ab
     # - nginx
 cache:
-  apt: # Does probably not speedup anything!
+  # apt: # Does probably not speedup anything!
   directories:
     - $HOME/.composer/cache/files
 
@@ -109,6 +109,7 @@ script:
   - w3m http://127.0.0.1:8000/argument | cat
   - w3m http://127.0.0.1:8000/variadic/request | cat
   - ab -n 100 http://127.0.0.1:8000/ || true
+  - which php
   - apt-cache policy apache2 nginx php5-fpm php-fpm
 
 after_success:
