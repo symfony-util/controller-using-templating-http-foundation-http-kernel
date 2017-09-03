@@ -118,6 +118,9 @@ script:
   - find /home -name php
   - find /home -name fpm
   - find /home -name pool.d
+  - file /home/travis/.phpenv/versions/*/php/php/fpm
+  - ls /home/travis/.phpenv/versions/*/php/php/fpm
+
 
 after_success:
     - true || bash <(curl -s https://codecov.io/bash) -s /tmp
