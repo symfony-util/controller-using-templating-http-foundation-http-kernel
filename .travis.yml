@@ -72,7 +72,6 @@ before_install:
   - which composer
   - ls /tmp
   - php --ini
-  - php-fpm --ini
   - xdebug=/home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini
   - if [[ -f $xdebug ]]; then cat $xdebug; cp $xdebug /tmp; phpenv config-rm xdebug.ini; fi
   - xdebug_php=
