@@ -6,7 +6,7 @@ addons:
     - apache2-utils # Contains: /usr/bin/ab
     # - nginx
 cache:
-  - apt
+  apt:
   directories:
     - $HOME/.composer/cache/files
 
