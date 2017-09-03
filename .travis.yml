@@ -112,6 +112,7 @@ script:
   - ab -n 100 http://127.0.0.1:8000/ || true
   - which php
   - which php-fpm
+  - find / -name php-fpm.conf
   - php-fpm
   - apt-cache policy apache2 nginx php5-fpm php-fpm
 
