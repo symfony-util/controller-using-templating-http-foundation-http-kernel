@@ -117,6 +117,8 @@ script:
   - apt-cache policy apache2 nginx php5-fpm php-fpm
   - install --directory /tmp/nginx
   - which nginx || true
+  - pwd
+  - ls
   - ls ~/.nginx.conf
   - nginx -V -t -c ~/.nginx.conf || true
 
