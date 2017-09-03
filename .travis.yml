@@ -118,9 +118,9 @@ script:
   - install --directory /tmp/nginx
   - which nginx || true
   - pwd
-  - ls
-  - ls ~/.nginx.conf
-  - nginx -V -t -c ~/.nginx.conf || true
+  - ls -a
+  - ls `pwd`/.nginx.conf
+  - nginx -V -t -c `pwd`/.nginx.conf || true
 
 
 after_success:
