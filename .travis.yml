@@ -3,7 +3,7 @@ sudo: false
 addons:
   apt:
     packages:
-    # - apache2-utils # Contains: /usr/bin/ab
+    - apache2-utils # Contains: /usr/bin/ab
     # - nginx
 cache:
   - apt
