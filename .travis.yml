@@ -120,6 +120,8 @@ script:
   - find /home -name pool.d
   - file /home/travis/.phpenv/versions/*/php/php/fpm
   - ls /home/travis/.phpenv/versions/*/php/php/fpm
+  - ls ~/.phpenv/versions/*/etc/php-fpm.conf.default
+  - cat ~/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/php-fpm.conf.default
 
 
 after_success:
