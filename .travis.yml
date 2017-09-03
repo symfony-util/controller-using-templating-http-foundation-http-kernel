@@ -6,7 +6,7 @@ addons:
     - apache2-utils # Contains: /usr/bin/ab
     # - nginx
 cache:
-  apt:
+  apt: # Does probably not speedup anything!
   directories:
     - $HOME/.composer/cache/files
 
@@ -109,7 +109,7 @@ script:
   - w3m http://127.0.0.1:8000/argument | cat
   - w3m http://127.0.0.1:8000/variadic/request | cat
   - ab -n 100 http://127.0.0.1:8000/ || true
-  - apt-cache policy apache2 nginx
+  - apt-cache policy apache2 nginx php5-fpm php-fpm
 
 after_success:
     - true || bash <(curl -s https://codecov.io/bash) -s /tmp
@@ -117,3 +117,5 @@ after_success:
 # inspirated from:
   # symfony/symfony-demo
   # https://github.com/doctrine/dbal/blob/v2.5.13/.travis.yml
+# suggestion for future inspiration
+  # https://github.com/tburry/travis-nginx-test
