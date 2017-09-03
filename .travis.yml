@@ -4,7 +4,9 @@ addons:
   apt:
     packages:
     # - apache2-utils # Contains: /usr/bin/ab
+    # - nginx
 cache:
+  - apt
   directories:
     - $HOME/.composer/cache/files
 
@@ -107,7 +109,7 @@ script:
   - w3m http://127.0.0.1:8000/argument | cat
   - w3m http://127.0.0.1:8000/variadic/request | cat
   - ab -n 100 http://127.0.0.1:8000/ || true
-  - apt-cache policy apache2
+  - apt-cache policy apache2 nginx
 
 after_success:
     - true || bash <(curl -s https://codecov.io/bash) -s /tmp
