@@ -115,6 +115,9 @@ script:
   - php-fpm --fpm-config .php-fpm.conf
   - apt-cache policy apache2 nginx php5-fpm php-fpm
   - ls /etc/php5/fpm/pool.d
+  - find /home -name php
+  - find /home -name fpm
+  - find /home -name pool.d
 
 after_success:
     - true || bash <(curl -s https://codecov.io/bash) -s /tmp
