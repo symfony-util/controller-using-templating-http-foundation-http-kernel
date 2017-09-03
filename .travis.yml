@@ -4,7 +4,7 @@ addons:
   apt:
     packages:
     # - apache2-utils # Contains: /usr/bin/ab
-    # - nginx
+    - nginx
 cache:
   # apt: # Does probably not speedup anything!
   directories:
