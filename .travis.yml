@@ -121,6 +121,7 @@ script:
   - ls -a
   - ls `pwd`/.nginx.conf
   - nginx -V -t -c `pwd`/.nginx.conf || true
+  - w3m http://localhost:8080/ | cat
 
 
 after_success:
