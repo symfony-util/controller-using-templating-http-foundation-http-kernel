@@ -117,13 +117,9 @@ script:
   - apt-cache policy apache2 nginx php5-fpm php-fpm
   - install --directory /tmp/nginx
   - which nginx || true
-  - pwd
-  - ls -a
-  - ls `pwd`/.nginx.conf
   - nginx -V -t -c `pwd`/.nginx.conf || true
   - nginx -c `pwd`/.nginx.conf || true
   - w3m http://localhost:8080/ | cat
-  - w3m http://127.0.0.1:8080/ | cat
   - ps -aux | grep php-fpm
   - ps -aux | grep nginx
 
