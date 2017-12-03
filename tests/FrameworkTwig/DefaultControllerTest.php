@@ -13,10 +13,10 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class DefaultControllerTest extends WebTestCase
 {
-    public function testIndex()
+    public function testVersion()
     {
         $this->assertSame(
-            "2.4.0",
+            '2.4.0',
             Symfony\Component\HttpKernel\Kernel::VERSION
         );
     }
