@@ -55,7 +55,7 @@ class DefaultControllerTest extends WebTestCase
         $this->assertContains('Hello World!', $client->getResponse()->getContent());
     }
 
-    public function testVariadic()
+    public function _s34_testVariadic()
     {
         $client = static::createClient();
 
