@@ -23,7 +23,9 @@ class DefaultControllerTest extends WebTestCase
 
     public function testIndex()
     {
-        if ('3.4.0' >= Symfony\Component\HttpKernel\Kernel::VERSION) $this->markTestIncomplete(); // Test does not work any more with Symfony 3.4
+        if ('3.4.0' >= Symfony\Component\HttpKernel\Kernel::VERSION) {
+            $this->markTestIncomplete();
+        } // Test does not work any more with Symfony 3.4
 
         $client = static::createClient();
 
@@ -39,7 +41,9 @@ class DefaultControllerTest extends WebTestCase
 
     public function testArgument()
     {
-        $this->markTestIncomplete(); // Test does not work any more with Symfony 3.4
+        if ('3.4.0' >= Symfony\Component\HttpKernel\Kernel::VERSION) {
+            $this->markTestIncomplete();
+        } // Test does not work any more with Symfony 3.4
 
         $client = static::createClient();
 
@@ -55,7 +59,9 @@ class DefaultControllerTest extends WebTestCase
 
     public function testConstructor()
     {
-        $this->markTestIncomplete(); // Test does not work any more with Symfony 3.4
+        if ('3.4.0' >= Symfony\Component\HttpKernel\Kernel::VERSION) {
+            $this->markTestIncomplete();
+        } // Test does not work any more with Symfony 3.4
 
         $client = static::createClient();
 
@@ -71,7 +77,9 @@ class DefaultControllerTest extends WebTestCase
 
     public function testVariadic()
     {
-        $this->markTestIncomplete(); // Test does not work any more with Symfony 3.4
+        if ('3.4.0' >= Symfony\Component\HttpKernel\Kernel::VERSION) {
+            $this->markTestIncomplete();
+        } // Test does not work any more with Symfony 3.4
 
         $client = static::createClient();
 
