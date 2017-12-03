@@ -16,8 +16,9 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
     /**
      * @dataProvider urlProvider
      */
-    public function _s34_testPageIsSuccessful($url)
+    public function testPageIsSuccessful($url)
     {
+        $this->markTestIncomplete();
         $client = self::createClient();
         $client->request('GET', $url);
 
