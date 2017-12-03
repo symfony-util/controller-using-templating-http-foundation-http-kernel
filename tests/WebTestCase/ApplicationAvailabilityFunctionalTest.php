@@ -18,7 +18,7 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
      */
     public function testPageIsSuccessful($url)
     {
-        $this->markTestIncomplete();
+        $this->markTestIncomplete(); // Test does not work any more with Symfony 3.4
         $client = self::createClient();
         $client->request('GET', $url);
 
