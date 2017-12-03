@@ -19,6 +19,7 @@ Controller which renders a template and returns a response (HttpFoundation): dep
 * Additional functional testing calling the controller from HttpKernel or FrameworkBundle.
 
 ## Possible improvements
+* Does not pass test with Symfony 4. Travis 445, using Symfony 4, shows mixed components from Symfony 3 and 4 and fails all tests due to bad configuration. Symfony 3.4 fails in a may be similar way. 
 * Use (yaml) configuraton for test Kernel(s), instead of in php code configuration
 * Tests do not use 2 Kernels as intended, the first one configured is the only one! Corrected, OK now!
 
