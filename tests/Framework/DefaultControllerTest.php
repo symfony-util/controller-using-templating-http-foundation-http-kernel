@@ -13,8 +13,10 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class DefaultControllerTest extends WebTestCase
 {
-    public function _s34_testIndex()
+    public function testIndex()
     {
+        $this->markTestIncomplete(); // Test does not work any more with Symfony 3.4
+
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/');
@@ -27,8 +29,10 @@ class DefaultControllerTest extends WebTestCase
         $this->assertContains('Hello Component!', $client->getResponse()->getContent());
     }
 
-    public function _s34_testArgument()
+    public function testArgument()
     {
+        $this->markTestIncomplete(); // Test does not work any more with Symfony 3.4
+
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/argument');
@@ -41,8 +45,10 @@ class DefaultControllerTest extends WebTestCase
         $this->assertContains('Hello Component!', $client->getResponse()->getContent());
     }
 
-    public function _s34_testConstructor()
+    public function testConstructor()
     {
+        $this->markTestIncomplete(); // Test does not work any more with Symfony 3.4
+
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/constructor');
