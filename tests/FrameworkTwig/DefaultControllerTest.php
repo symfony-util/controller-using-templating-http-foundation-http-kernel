@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class DefaultControllerTest extends WebTestCase
 {
-    public function testIndex()
+    public function _s34_testIndex()
     {
         $client = static::createClient();
 
@@ -27,7 +27,7 @@ class DefaultControllerTest extends WebTestCase
         $this->assertContains('Hello World!', $client->getResponse()->getContent());
     }
 
-    public function testArgument()
+    public function _s34_testArgument()
     {
         $client = static::createClient();
 
@@ -41,7 +41,7 @@ class DefaultControllerTest extends WebTestCase
         $this->assertContains('Hello World!', $client->getResponse()->getContent());
     }
 
-    public function testConstructor()
+    public function _s34_testConstructor()
     {
         $client = static::createClient();
 
@@ -55,7 +55,7 @@ class DefaultControllerTest extends WebTestCase
         $this->assertContains('Hello World!', $client->getResponse()->getContent());
     }
 
-    public function testVariadic()
+    public function _s34_testVariadic()
     {
         $client = static::createClient();
 
