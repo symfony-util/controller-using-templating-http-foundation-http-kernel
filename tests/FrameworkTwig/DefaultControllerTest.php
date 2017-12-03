@@ -15,6 +15,14 @@ class DefaultControllerTest extends WebTestCase
 {
     public function testIndex()
     {
+        $this->assertSame(
+            "2.4.0",
+            Symfony\Component\HttpKernel\Kernel::VERSION
+        );
+    }
+
+    public function testIndex()
+    {
         $this->markTestIncomplete(); // Test does not work any more with Symfony 3.4
 
         $client = static::createClient();
