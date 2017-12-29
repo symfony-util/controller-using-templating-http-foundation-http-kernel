@@ -23,4 +23,8 @@ Controller which renders a template and returns a response (HttpFoundation): dep
 * Use (yaml) configuraton for test Kernel(s), instead of in php code configuration
 * Tests do not use 2 Kernels as intended, the first one configured is the only one! Corrected, OK now!
 
+### Should be a composer *metapackage*
+* [metapackage](https://getcomposer.org/doc/04-schema.md#type)
+* Maybe all the PHP code has to be moved somewhere else!
+
 Icon: https://material.io/icons/#ic_wallpaper
