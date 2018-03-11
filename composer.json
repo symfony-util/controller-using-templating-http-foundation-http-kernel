@@ -10,7 +10,7 @@
     ],
     "require": {
         "symfony/http-kernel": "^3.3 || ^4.0",
-        "symfony-util/controller-using-templating-http-foundation": "^0@dev"
+        "symfony-util/controller-using-templating-http-foundation": "^0@dev || ^5@dev || ^7@dev || dev-master@dev"
     },
     "require-dev": {
         "knplabs/rad-resource-resolver": "^2.1",
