@@ -15,7 +15,7 @@ class DefaultControllerTest extends WebTestCase
 {
     public function testIndex()
     {
-        if ('3.4.0' >= Symfony\Component\HttpKernel\Kernel::VERSION) {
+        if ('3.4.0' <= Symfony\Component\HttpKernel\Kernel::VERSION) {
             $this->markTestIncomplete();
         } // Test does not work any more with Symfony 3.4
 
@@ -33,7 +33,7 @@ class DefaultControllerTest extends WebTestCase
 
     public function testArgument()
     {
-        if ('3.4.0' >= Symfony\Component\HttpKernel\Kernel::VERSION) {
+        if ('3.4.0' <= Symfony\Component\HttpKernel\Kernel::VERSION) {
             $this->markTestIncomplete();
         } // Test does not work any more with Symfony 3.4
 
@@ -51,7 +51,7 @@ class DefaultControllerTest extends WebTestCase
 
     public function testConstructor()
     {
-        if ('3.4.0' >= Symfony\Component\HttpKernel\Kernel::VERSION) {
+        if ('3.4.0' <= Symfony\Component\HttpKernel\Kernel::VERSION) {
             $this->markTestIncomplete();
         } // Test does not work any more with Symfony 3.4
 
