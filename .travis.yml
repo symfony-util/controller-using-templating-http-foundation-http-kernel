@@ -5,6 +5,7 @@ addons:
   apt:
     packages:
     # - apache2-utils # Contains: /usr/bin/ab
+    # - colordiff
     - nginx
 
 cache:
@@ -119,6 +120,7 @@ script:
   - which php-fpm
   - php-fpm --fpm-config .php-fpm.conf
   - ls ~/.phpenv/versions/*/etc/php-fpm.conf.default
+  # - colordiff --minimal --side-by-side ~/.phpenv/versions/*/etc/php-fpm.conf.default .php-fpm.conf
   - apt-cache policy apache2 nginx php5-fpm php-fpm
   - install --directory /tmp/nginx
   - which nginx || true
