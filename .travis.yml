@@ -1,18 +1,20 @@
 ---
-sudo: false
+language: php
+
 addons:
   apt:
     packages:
     # - apache2-utils # Contains: /usr/bin/ab
     - nginx
+
 cache:
   # apt: # Does probably not speedup anything!
   directories:
     - $HOME/.composer/cache/files
 
-language: php
-# php: 7.1
-# env: # Important!
+env:
+- PS_FORMAT=user,pid,ppid,nlwp,%mem,args
+
 matrix:
   fast_finish: true
   exclude: # To use less CPU during debug, but remains without effect!
@@ -122,8 +124,8 @@ script:
   - nginx -V -t -c `pwd`/.nginx.conf || true
   - nginx -c `pwd`/.nginx.conf || true
   - w3m http://localhost:8080/ | cat
-  - ps -aux | grep php-fpm
-  - ps -aux | grep nginx
+  - ps -C php-fpm
+  - ps -C nginx
 
 
 after_success:
