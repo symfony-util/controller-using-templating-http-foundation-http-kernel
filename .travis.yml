@@ -13,7 +13,8 @@ cache:
     - $HOME/.composer/cache/files
 
 env:
-- PS_FORMAT=user,pid,ppid,nlwp,%mem,args
+  global:
+  - PS_FORMAT=user,pid,ppid,nlwp,%mem,args
 
 matrix:
   fast_finish: true
