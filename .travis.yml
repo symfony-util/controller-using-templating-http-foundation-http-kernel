@@ -122,7 +122,8 @@ script:
   - ls ~/.phpenv/versions/*/etc/php-fpm.conf.default
   # - colordiff --minimal --side-by-side ~/.phpenv/versions/*/etc/php-fpm.conf.default .php-fpm.conf
   - apt-cache policy apache2 nginx php5-fpm php-fpm
-  - install --directory /tmp/nginx
+  - install --directory /tmp/nginx # use ?
+  - service nginx status
   - ps -C nginx
   - command -v nginx
   - nginx -V -t -c $(pwd)/.nginx.conf
