@@ -75,7 +75,7 @@ before_install:
   - pwd
   - echo $HOME
   - echo $TRAVIS_PHP_VERSION
-  - which composer
+  - command -v composer
   - ls /tmp
   - php --ini
   - xdebug=/home/travis/.phpenv/versions/$TRAVIS_PHP_VERSION/etc/conf.d/xdebug.ini
@@ -116,16 +116,17 @@ script:
   - w3m http://127.0.0.1:8000/argument | cat
   - w3m http://127.0.0.1:8000/variadic/request | cat
   - ab -n 100 http://127.0.0.1:8000/ || true
-  - which php
-  - which php-fpm
+  - command -v php
+  - command -v php-fpm
   - php-fpm --fpm-config .php-fpm.conf
   - ls ~/.phpenv/versions/*/etc/php-fpm.conf.default
   # - colordiff --minimal --side-by-side ~/.phpenv/versions/*/etc/php-fpm.conf.default .php-fpm.conf
   - apt-cache policy apache2 nginx php5-fpm php-fpm
   - install --directory /tmp/nginx
-  - which nginx || true
-  - nginx -V -t -c `pwd`/.nginx.conf || true
-  - nginx -c `pwd`/.nginx.conf || true
+  - ps -C nginx
+  - command -v nginx
+  - nginx -V -t -c $(pwd)/.nginx.conf
+  - nginx -c $(pwd)/.nginx.conf
   - w3m http://localhost:8080/ | cat
   - ps -C php-fpm
   - ps -C nginx
