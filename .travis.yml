@@ -127,7 +127,7 @@ script:
   - ps -C nginx
   - command -v nginx
   - nginx -V -t -c $(pwd)/.nginx.conf
-  - nginx -c $(pwd)/.nginx.conf & ps $!
+  - nginx -c $(pwd)/.nginx.conf & ps $! # To check something seems to fail!
   - w3m http://localhost:8080/ | cat
   - ps -C php-fpm
   - ps -C nginx
