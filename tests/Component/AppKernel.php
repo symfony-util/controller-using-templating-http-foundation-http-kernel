@@ -254,7 +254,7 @@ class AppKernel extends Kernel
         $c->setAlias(EngineInterface::class, TwigEngine::class);
         $c->setAlias('templating', TwigEngine::class); // Read Symfony source code to understand!
 
-        if (in_array($this->getEnvironment(), ['test'], true)) {
+        if (\in_array($this->getEnvironment(), ['test'], true)) {
             $c->autowire('test.client', Client::class)
                 ->setPublic(true); // Public needed!
         }
