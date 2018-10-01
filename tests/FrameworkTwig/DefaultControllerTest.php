@@ -16,7 +16,7 @@ class DefaultControllerTest extends WebTestCase
     public function testVersion()
     {
         $this->assertSame(
-            '3.4.15',
+            '3.4.16',
             Symfony\Component\HttpKernel\Kernel::VERSION
         );
     }
