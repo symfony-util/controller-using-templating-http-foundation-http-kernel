@@ -83,7 +83,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
         $matcher
             ->expects($this->once())
             ->method('match')
-            ->will($this->returnValue([
+            ->willReturn($this->returnValue([
                 '_route' => 'foo',
                 'name' => 'Fabien',
                 '_controller' => function ($name) {
@@ -94,7 +94,7 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
         $matcher
             ->expects($this->once())
             ->method('getContext')
-            ->will($this->returnValue($this->createMock(RequestContext::class)))
+            ->willReturn($this->returnValue($this->createMock(RequestContext::class)))
         ;
 
         $c = $this->container();
