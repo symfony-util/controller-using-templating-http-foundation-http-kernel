@@ -83,18 +83,21 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
         $matcher
             ->expects($this->once())
             ->method('match')
-            ->willReturn($this->returnValue([
+            // ->will($this->returnValue([
+            ->willReturn([
                 '_route' => 'foo',
                 'name' => 'Fabien',
                 '_controller' => function ($name) {
                     return new Response('Hello '.$name);
                 },
-            ]))
+            // ]))
+            ])
         ;
         $matcher
             ->expects($this->once())
             ->method('getContext')
-            ->willReturn($this->returnValue($this->createMock(RequestContext::class)))
+            // ->will($this->returnValue($this->createMock(RequestContext::class)))
+            ->willReturn($this->createMock(RequestContext::class))
         ;
 
         $c = $this->container();
@@ -122,8 +125,8 @@ final class EngineAsArgumentInKernelControllerTest extends TestCase
                     new VariadicValueResolver(),
                 ]
             )
-        ))->handle(Request::create('/', 'GET'));
-        // ))->handle(new Request());
+        // ))->handle(Request::create('/', 'GET'));
+        ))->handle(new Request());
 
         $this->assertSame(200, $response->getStatusCode());
         $this->assertContains('Hello Fabien', $response->getContent());
