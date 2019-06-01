@@ -76,16 +76,19 @@ final class InKernelTemplatingControllerTest extends TestCase
         $matcher
             ->expects($this->once())
             ->method('match')
-            ->willReturn($this->returnValue([
+            // ->will($this->returnValue([
+            ->willReturn([
                 '_route' => 'foo',
                 'name' => 'Fabien',
                 '_controller' => TemplatingController::class,
-            ]))
+            // ]))
+            ])
         ;
         $matcher
             ->expects($this->once())
             ->method('getContext')
-            ->willReturn($this->returnValue($this->createMock(RequestContext::class)))
+            // ->will($this->returnValue($this->createMock(RequestContext::class)))
+            ->willReturn($this->createMock(RequestContext::class))
         ;
 
         $c = $this->container();
